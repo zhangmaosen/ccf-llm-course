@@ -107,6 +107,9 @@ AI：很高兴能帮到你！记住，无论什么时候，都可以来找我聊
 
 ## 📖 第二部分：大语言模型（LLM）
 
+### 🎬 视频导学
+📺 [GPT 是如何工作的？](https://www.bilibili.com/video/BV1xxx)
+
 ### 2.1 什么是大语言模型？
 
 **定义：**
@@ -425,4 +428,4 @@ AI 思考过程：
 
 ---
 
-**[⬆️ 返回目录](../README.md) | [← 上一课](01-ai-basics.md) | [下一课：模型架构 →](03-architecture.md)**
+**[⬆️ 返回目录](../README.md) | [← 上一课](01-ai-basics.md) | [下一课：模型架构 →](03-architecture.md)**(03-architecture.md)**) | [下一课：模型架构 →](03-architecture.md)**

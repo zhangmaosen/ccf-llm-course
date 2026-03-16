@@ -205,6 +205,10 @@
 
 ## 📖 第四部分：参数高效微调
 
+### 🎬 视频导学
+📺 [LoRA 原理详解](https://www.bilibili.com/video/BV1xxx)
+📄 [LoRA 论文图解](https://arxiv.org/abs/2106.09685)
+
 ### 4.1 问题：全量微调太贵
 
 ```
@@ -321,4 +325,4 @@ GPT-3 1750亿参数：
 
 ---
 
-**[⬆️ 返回目录](../README.md) | [← 上一课](04-pretraining.md) | [下一课：人类对齐 →](06-alignment.md)**
+**[⬆️ 返回目录](../README.md) | [← 上一课](04-pretraining.md) | [下一课：人类对齐 →](06-alignment.md)**(06-alignment.md)**

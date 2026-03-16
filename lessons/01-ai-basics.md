@@ -203,7 +203,13 @@
 
 ## 📖 第四部分：神经网络基础
 
+### 🎬 视频导学
+📺 [3Blue1Brown - 神经网络系列](https://www.bilibili.com/video/BV1bx411M7Zx)（强烈推荐！动画超赞）
+
 ### 4.1 模仿人脑
+
+![神经网络可视化](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/800px-Colored_neural_network.svg.png)
+*图：神经网络结构示意（来源：Wikipedia）*
 
 **人脑神经元：**
 ```

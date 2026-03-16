@@ -55,6 +55,10 @@
 
 ## 📖 第一部分：什么是智能体？
 
+### 🎬 视频导学
+📺 [AI Agent 详解](https://www.bilibili.com/video/BV1xxx)
+🔗 [LangChain 官方教程](https://python.langchain.com/docs/get_started/introduction)
+
 ### 1.1 智能体的定义
 
 ```

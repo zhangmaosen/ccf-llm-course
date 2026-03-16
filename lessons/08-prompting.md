@@ -225,6 +225,10 @@
 
 ## 📖 第三部分：思维链提示
 
+### 🎬 视频导学
+📺 [思维链原理与应用](https://www.bilibili.com/video/BV1xxx)
+📄 [Chain of Thought 论文](https://arxiv.org/abs/2201.11903)
+
 ### 3.1 什么是思维链？
 
 **Chain of Thought（CoT）：让 AI "一步步思考"**

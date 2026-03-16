@@ -98,6 +98,10 @@
 
 ## 📖 第二部分：预训练任务
 
+### 🎬 视频导学
+📺 [GPT 预训练原理](https://www.bilibili.com/video/BV1xxx)
+🔗 [语言模型在线演示](https://huggingface.co/spaces/bigscience/bloom)
+
 ### 2.1 下一个词元预测
 
 **最经典的预训练任务：**
@@ -400,4 +404,4 @@ Batch Size = 1000：一次做1000道题
 
 ---
 
-**[⬆️ 返回目录](../README.md) | [← 上一课](03-architecture.md) | [下一课：指令微调 →](05-instruction-tuning.md)**
+**[⬆️ 返回目录](../README.md) | [← 上一课](03-architecture.md) | [下一课：指令微调 →](05-instruction-tuning.md)**ion-tuning.md)**

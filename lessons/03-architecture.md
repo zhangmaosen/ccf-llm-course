@@ -36,6 +36,10 @@ AI 会"注意"到"小红"和"她"之间的关系！
 
 ## 📖 第一部分：注意力机制
 
+### 🎬 视频导学
+📺 [注意力机制详解 - 李宏毅](https://www.bilibili.com/video/BV1Wv411h7kN?p=26)
+🔗 [Transformer 交互演示](https://poloclub.github.io/transformer-explainer/)
+
 ### 1.1 人类的注意力
 
 **上课时，你会注意什么？**
@@ -379,4 +383,4 @@ Transformer：
 
 ---
 
-**[⬆️ 返回目录](../README.md) | [← 上一课](02-llm-basics.md) | [下一课：预训练技术 →](04-pretraining.md)**
+**[⬆️ 返回目录](../README.md) | [← 上一课](02-llm-basics.md) | [下一课：预训练技术 →](04-pretraining.md)**etraining.md)**

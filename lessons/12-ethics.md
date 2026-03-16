@@ -46,6 +46,10 @@ AI 生成内容，但发现：
 
 ## 📖 第一部分：AI 偏见
 
+### 🎬 视频导学
+📺 [AI 伦理与偏见](https://www.bilibili.com/video/BV1xxx)
+📄 [AI Fairness 指南](https://fairmlbook.org/)
+
 ### 1.1 什么是偏见？
 
 ```

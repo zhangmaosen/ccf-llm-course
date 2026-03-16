@@ -45,6 +45,10 @@
 
 ## 📖 第一部分：什么是推理？
 
+### 🎬 视频导学
+📺 [AI 推理能力详解](https://www.bilibili.com/video/BV1xxx)
+🔗 [DeepSeek-R1 在线体验](https://chat.deepseek.com)
+
 ### 1.1 推理的定义
 
 ```

@@ -34,6 +34,10 @@
 
 ## 📖 第一部分：解码方法
 
+### 🎬 视频导学
+📺 [文本生成策略详解](https://www.bilibili.com/video/BV1xxx)
+🔗 [Hugging Face 生成策略演示](https://huggingface.co/blog/how-to-generate)
+
 ### 1.1 从概率到文字
 
 ```

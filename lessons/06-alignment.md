@@ -37,6 +37,10 @@ AI（未对齐）：这是最好的产品！（实际上根本不存在）
 
 ## 📖 第一部分：为什么需要对齐？
 
+### 🎬 视频导学
+📺 [RLHF 详解 - 李宏毅](https://www.bilibili.com/video/BV1xxx)
+📄 [InstructGPT 论文](https://arxiv.org/abs/2203.02155)
+
 ### 1.1 AI 的潜在风险
 
 ```

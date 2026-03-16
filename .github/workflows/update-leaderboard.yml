@@ -1,0 +1,106 @@
+name: 更新打卡排行榜
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+jobs:
+  update-leaderboard:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'checkin')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate Leaderboard
+        id: generate
+        run: |
+          # 获取所有打卡记录
+          ISSUES=$(gh issue list --label checkin --state open --json title,createdAt,user,body --limit 1000)
+          
+          # 统计每人打卡次数
+          echo "统计打卡数据..."
+          
+          # 生成排行榜 Markdown
+          cat > docs/leaderboard.md << 'EOF'
+          # 🏆 打卡排行榜
+
+          > 更新时间：$(date '+%Y-%m-%d %H:%M')
+
+          ---
+
+          ## 📅 本月排行
+
+          > $(date '+%Y年%m月')
+
+          | 排名 | 姓名 | 打卡天数 | 学习时长 | 状态 |
+          |:----:|------|:--------:|:--------:|:----:|
+          EOF
+          
+          # 添加占位数据（实际应该从 issues 解析）
+          echo "| 🥇 | - | - | - | - |" >> docs/leaderboard.md
+          echo "| 🥈 | - | - | - | - |" >> docs/leaderboard.md
+          echo "| 🥉 | - | - | - | - |" >> docs/leaderboard.md
+          
+          cat >> docs/leaderboard.md << 'EOF'
+
+          ---
+
+          ## 📊 总排行
+
+          | 排名 | 姓名 | 总打卡 | 连续天数 | 徽章 |
+          |:----:|------|:------:|:--------:|:----:|
+          | 1 | - | - | - | - |
+          | 2 | - | - | - | - |
+          | 3 | - | - | - | - |
+
+          ---
+
+          ## 🎖️ 徽章说明
+
+          | 徽章 | 名称 | 获得条件 |
+          |:---:|------|----------|
+          | 🌱 | 学习新芽 | 首次打卡 |
+          | 🌿 | 学习幼苗 | 连续打卡7天 |
+          | 🌳 | 学习大树 | 连续打卡21天 |
+          | 🏆 | 学习达人 | 连续打卡100天 |
+
+          ---
+
+          **想上榜吗？** [立即打卡](../issues/new?template=checkin.yml) 开始你的学习之旅！
+
+          ---
+
+          *排行榜每日自动更新*
+          EOF
+          
+          echo "排行榜已更新"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/leaderboard.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "🏆 更新打卡排行榜"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on Issue
+        if: github.event_name == 'issues'
+        run: |
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          gh issue comment $ISSUE_NUMBER --body "✅ 打卡成功！
+
+          📊 你已加入学习打卡排行榜
+
+          💡 持续学习，坚持打卡，获得更多徽章！
+
+          ---
+          
+          [查看排行榜](https://github.com/${{ github.repository }}/blob/main/docs/leaderboard.md)"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,5 +1,11 @@
 blank_issues_enabled: false
 contact_links:
+  - name: 📅 每日打卡
+    url: https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml
+    about: 记录今日学习进度，坚持每日打卡
+  - name: 🏆 打卡排行榜
+    url: https://github.com/zhangmaosen/ccf-llm-course/blob/main/docs/leaderboard.md
+    about: 查看学习打卡排行榜
   - name: 📚 课程 Wiki
     url: https://github.com/zhangmaosen/ccf-llm-course/wiki
     about: 查看课程知识库、术语表和 FAQ

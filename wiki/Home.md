@@ -4,6 +4,38 @@
 
 ---
 
+## 📅 学习打卡
+
+**坚持学习，每天进步！**
+
+| 功能 | 链接 |
+|-----|------|
+| 📅 每日打卡 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
+| 🏆 打卡排行榜 | [查看排行](https://github.com/zhangmaosen/ccf-llm-course/blob/main/docs/leaderboard.md) |
+| 📖 打卡指南 | [查看规则](https://github.com/zhangmaosen/ccf-llm-course/blob/main/docs/checkin-guide.md) |
+
+### 积分规则
+
+| 行为 | 积分 |
+|-----|:----:|
+| 每日打卡 | +1 |
+| 学习>1小时 | +1 |
+| 完成作业 | +2 |
+| 分享笔记 | +2 |
+| 连续打卡7天 | +5 |
+| 连续打卡21天 | +15 |
+
+### 打卡徽章
+
+| 徽章 | 条件 |
+|:---:|------|
+| 🌱 | 首次打卡 |
+| 🌿 | 连续7天 |
+| 🌳 | 连续21天 |
+| 🏆 | 连续100天 |
+
+---
+
 ## 📚 课程目录
 
 ### 第一阶段：基础概念

@@ -1,0 +1,54 @@
+name: 打卡提醒
+
+on:
+  schedule:
+    # 每天北京时间 21:00 (UTC 13:00)
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Today's Check-ins
+        id: check
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          
+          # 获取今日打卡数
+          TODAY_COUNT=$(gh issue list --label checkin --state open --search "created:>=${TODAY}" --json number | jq 'length')
+          
+          echo "today_count=$TODAY_COUNT" >> $GITHUB_OUTPUT
+          echo "today=$TODAY" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Reminder Issue
+        if: steps.check.outputs.today_count == '0'
+        run: |
+          gh issue create \
+            --title "⏰ 今日打卡提醒 - ${{ steps.check.outputs.today }}" \
+            --body "## 📅 今日还未有人打卡
+
+            还没有同学今天打卡哦！
+
+            ### 📝 记得完成今日学习打卡
+
+            [点击打卡](https://github.com/${{ github.repository }}/issues/new?template=checkin.yml)
+
+            ---
+
+            **坚持学习，每天进步！** 💪" \
+            --label "reminder,checkin"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "### 打卡统计" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- 今日日期: ${{ steps.check.outputs.today }}" >> $GITHUB_STEP_SUMMARY
+          echo "- 今日打卡: ${{ steps.check.outputs.today_count }} 人" >> $GITHUB_STEP_SUMMARY

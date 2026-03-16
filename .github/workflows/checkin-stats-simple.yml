@@ -34,7 +34,7 @@ jobs:
           echo "| 指标 | 数值 |" >> $GITHUB_STEP_SUMMARY
           echo "|:----:|:----:|" >> $GITHUB_STEP_SUMMARY
           echo "| 总打卡数 | $TOTAL |" >> $GITHUB_STEP_SUMMARY
-          echo "| 今日打卡 | $TODAY_NUM |" >> $GITHUB_SUMMARY
+          echo "| 今日打卡 | $TODAY_NUM |" >> $GITHUB_STEP_SUMMARY
           echo "| 参与人数 | $USERS |" >> $GITHUB_STEP_SUMMARY
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -12,13 +12,11 @@
 
 **坚持学习，每天进步！**
 
-[![Total Check-ins](https://img.shields.io/github/issues-search/zhangmaosen/ccf-llm-course?label=Total%20Check-ins&query=label%3Acheckin)](../../issues?q=is%3Aissue+label%3Acheckin)
-[![Today](https://img.shields.io/badge/Today-Check%20Now-orange)](../../issues/new?template=checkin.yml)
-[![Leaderboard](https://img.shields.io/badge/Leaderboard-View-green)](./docs/leaderboard.md)
+[![Check-in](https://img.shields.io/badge/打卡-立即参与-blue)](../../issues/new?template=checkin.yml)
+[![Leaderboard](https://img.shields.io/badge/排行榜-查看-green)](./docs/leaderboard.md)
+[![Wiki](https://img.shields.io/badge/Wiki-学习资料-purple)](../../wiki)
 
-**快速打卡：** [📅 立即打卡](../../issues/new?template=checkin.yml)
-
-详细规则：[打卡指南](./docs/checkin-guide.md)
+**快速入口：** [打卡](../../issues/new?template=checkin.yml) · [排行榜](./docs/leaderboard.md) · [打卡指南](./docs/checkin-guide.md)
 
 ---
 

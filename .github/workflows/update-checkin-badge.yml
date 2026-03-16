@@ -1,0 +1,96 @@
+name: 更新打卡统计徽章
+
+on:
+  issues:
+    types: [opened, closed, deleted]
+  schedule:
+    # 每小时更新一次
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'checkin') || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Statistics
+        id: stats
+        run: |
+          # 获取总打卡数
+          TOTAL=$(gh issue list --label checkin --state open --json number | jq 'length')
+          
+          # 获取今日打卡数
+          TODAY=$(date -u +%Y-%m-%d)
+          TODAY_COUNT=$(gh issue list --label checkin --state open --search "created:>=${TODAY}" --json number | jq 'length')
+          
+          # 获取参与人数（去重）
+          USERS=$(gh issue list --label checkin --state open --json user --jq '.[].user.login' | sort -u | wc -l | tr -d ' ')
+          
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+          echo "today=$TODAY_COUNT" >> $GITHUB_OUTPUT
+          echo "users=$USERS" >> $GITHUB_OUTPUT
+          
+          echo "### 打卡统计" >> $GITHUB_STEP_SUMMARY
+          echo "- 总打卡数: $TOTAL" >> $GITHUB_STEP_SUMMARY
+          echo "- 今日打卡: $TODAY_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- 参与人数: $USERS" >> $GITHUB_STEP_SUMMARY
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update README
+        run: |
+          # 创建新的徽章部分
+          cat > README_badge.md << 'EOF'
+          ---
+
+          ## 📅 学习打卡
+
+          **坚持学习，每天进步！**
+
+          EOF
+          
+          # 添加动态徽章
+          echo "![Total](https://img.shields.io/badge/总打卡-${{ steps.stats.outputs.total }}-blue) ![Today](https://img.shields.io/badge/今日打卡-${{ steps.stats.outputs.today }}-orange) ![Users](https://img.shields.io/badge/参与人数-${{ steps.stats.outputs.users }}-green)" >> README_badge.md
+          
+          echo "" >> README_badge.md
+          echo "**快速入口：** [打卡](../../issues/new?template=checkin.yml) · [排行榜](./docs/leaderboard.md) · [打卡指南](./docs/checkin-guide.md)" >> README_badge.md
+          echo "" >> README_badge.md
+          echo "---" >> README_badge.md
+          
+          # 替换 README 中的打卡部分
+          # 使用 awk 来处理多行替换
+          awk '
+          /^---$/ && f==0 { 
+            if (getline && /^## 📅 学习打卡/) {
+              # 跳过旧的打卡部分
+              while (getline && !/^---$/) { }
+              # 读取新的徽章内容
+              while ((getline line < "README_badge.md") > 0) {
+                print line
+              }
+              close("README_badge.md")
+              next
+            } else {
+              print "---"
+              print
+              next
+            }
+          }
+          { print }
+          ' README.md > README_new.md
+          
+          mv README_new.md README.md
+          rm -f README_badge.md
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "📊 更新打卡统计: ${{ steps.stats.outputs.total }}次打卡, ${{ steps.stats.outputs.users }}人参与"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

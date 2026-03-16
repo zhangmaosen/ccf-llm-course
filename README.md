@@ -40,6 +40,25 @@
 
 每个模块配有相应的练习题和实践项目：[练习目录](exercises/)
 
+### 📋 作业提交系统
+
+本课程使用 GitHub 原生功能管理作业：
+
+| 功能 | 用途 |
+|-----|------|
+| [Issues](../../issues) | 提交作业、提问、分享笔记 |
+| [Pull Requests](../../pulls) | 提交代码作业 |
+| [Wiki](../../wiki) | 知识库、FAQ、术语表 |
+| [Discussions](../../discussions) | 课程讨论 |
+| [Projects](../../projects) | 学习进度追踪 |
+
+**快速开始：**
+1. [提交作业](../../issues/new?assignees=&labels=homework&template=homework.yml&title=%5B%E4%BD%9C%E4%B8%9A%5D+)
+2. [提出问题](../../issues/new?assignees=&labels=question&template=question.yml&title=%5B%E9%97%AE%E9%A2%98%5D+)
+3. [分享笔记](../../issues/new?assignees=&labels=notes&template=notes.yml&title=%5B%E7%AC%94%E8%AE%B0%5D+)
+
+详见：[作业提交指南](./.github/SUBMISSION_GUIDE.md)
+
 ## 👥 适用对象
 
 - 初中生（建议 7-9 年级）

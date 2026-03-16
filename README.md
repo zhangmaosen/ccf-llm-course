@@ -12,9 +12,11 @@
 
 **坚持学习，每天进步！**
 
-[![打卡统计](https://img.shields.io/badge/总打卡次数-0-blue)](../../issues?q=is%3Aissue+label%3Acheckin)
-[![参与人数](https://img.shields.io/badge/参与人数-0-green)](../../graphs/contributors)
-[![今日打卡](https://img.shields.io/badge/今日打卡-0-orange)](../../issues?q=is%3Aissue+label%3Acheckin+created%3A%3E%3D$(date +%Y-%m-%d))
+| 📊 统计 | 数据 |
+|:-------:|:----:|
+| 打卡总数 | [查看](../../issues?q=is%3Aissue+label%3Acheckin) |
+| 今日打卡 | [查看](../../issues?q=is%3Aissue+label%3Acheckin+is%3Aopen) |
+| 打卡排行 | [查看](./docs/leaderboard.md) |
 
 **快速打卡：** [📅 立即打卡](../../issues/new?template=checkin.yml)
 

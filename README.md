@@ -12,11 +12,9 @@
 
 **坚持学习，每天进步！**
 
-| 📊 统计 | 数据 |
-|:-------:|:----:|
-| 打卡总数 | [查看](../../issues?q=is%3Aissue+label%3Acheckin) |
-| 今日打卡 | [查看](../../issues?q=is%3Aissue+label%3Acheckin+is%3Aopen) |
-| 打卡排行 | [查看](./docs/leaderboard.md) |
+[![Total Check-ins](https://img.shields.io/github/issues-search/zhangmaosen/ccf-llm-course?label=Total%20Check-ins&query=label%3Acheckin)](../../issues?q=is%3Aissue+label%3Acheckin)
+[![Today](https://img.shields.io/badge/Today-Check%20Now-orange)](../../issues/new?template=checkin.yml)
+[![Leaderboard](https://img.shields.io/badge/Leaderboard-View-green)](./docs/leaderboard.md)
 
 **快速打卡：** [📅 立即打卡](../../issues/new?template=checkin.yml)
 

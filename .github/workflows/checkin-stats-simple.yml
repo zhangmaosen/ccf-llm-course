@@ -1,0 +1,72 @@
+name: 统计打卡数据
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'  # 每2小时运行
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Calculate Stats
+        id: calc
+        run: |
+          # 总打卡数
+          TOTAL=$(gh issue list --label checkin --state open --json number 2>/dev/null | jq 'length' 2>/dev/null || echo "0")
+          
+          # 今日打卡
+          TODAY=$(date -u +%Y-%m-%d)
+          TODAY_NUM=$(gh issue list --label checkin --state open --search "created:>=$TODAY" --json number 2>/dev/null | jq 'length' 2>/dev/null || echo "0")
+          
+          # 参与人数
+          USERS=$(gh issue list --label checkin --state open --json user 2>/dev/null | jq -r '.[].user.login' 2>/dev/null | sort -u | wc -l | tr -d ' ' || echo "0")
+          
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+          echo "today=$TODAY_NUM" >> $GITHUB_OUTPUT
+          echo "users=$USERS" >> $GITHUB_OUTPUT
+          
+          echo "## 📊 打卡统计" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 指标 | 数值 |" >> $GITHUB_STEP_SUMMARY
+          echo "|:----:|:----:|" >> $GITHUB_STEP_SUMMARY
+          echo "| 总打卡数 | $TOTAL |" >> $GITHUB_STEP_SUMMARY
+          echo "| 今日打卡 | $TODAY_NUM |" >> $GITHUB_SUMMARY
+          echo "| 参与人数 | $USERS |" >> $GITHUB_STEP_SUMMARY
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update Stats File
+        run: |
+          mkdir -p stats
+          
+          # 更新详细统计
+          cat > stats/checkin.json << EOF
+          {
+            "total": ${{ steps.calc.outputs.total }},
+            "today": ${{ steps.calc.outputs.today }},
+            "users": ${{ steps.calc.outputs.users }},
+            "updated": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          
+          # 更新徽章
+          cat > stats/badge.json << EOF
+          {
+            "schemaVersion": 1,
+            "label": "打卡总数",
+            "message": "${{ steps.calc.outputs.total }}",
+            "color": "blue"
+          }
+          EOF
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add stats/checkin.json
+          git diff --quiet --staged || git commit -m "📊 更新打卡统计"
+          git push

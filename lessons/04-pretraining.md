@@ -136,4 +136,6 @@ BERT 使用这种方法训练。
 
 ---
 
-*下一课：指令微调 →*
+---
+
+**[⬆️ 返回目录](../README.md) | [← 上一课](03-architecture.md) | [下一课：指令微调 →](05-instruction-tuning.md)**

@@ -145,4 +145,6 @@ print(response)
 
 ---
 
-*下一课：复杂推理 →*
+---
+
+**[⬆️ 返回目录](../README.md) | [← 上一课](07-decoding.md) | [下一课：复杂推理 →](09-reasoning.md)**

@@ -55,7 +55,7 @@
 ## 📄 参考资料
 
 - [CCF 大模型能力认证大纲](https://www.ccf.org.cn/)
-- [课程 PPT 下载](assets/slides/)
+- 课程讲义见 `lessons/` 目录
 
 ## 📜 许可证
 

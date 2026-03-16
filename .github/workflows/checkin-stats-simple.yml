@@ -5,6 +5,10 @@ on:
     - cron: '0 */2 * * *'  # 每2小时运行
   workflow_dispatch:
 
+permissions:
+  contents: write
+  issues: read
+
 jobs:
   stats:
     runs-on: ubuntu-latest

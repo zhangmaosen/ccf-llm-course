@@ -1,59 +1,104 @@
----
 name: 📝 作业提交
-about: 提交课程作业
-title: '[作业] 第X课 - 姓名'
-labels: homework
-assignees: ''
----
+description: 提交课程作业
+title: "[作业] 第X课 - "
+labels: [homework]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 作业信息
+        请填写以下信息完成作业提交
 
-## 📋 作业信息
+  - type: input
+    id: lesson
+    attributes:
+      label: 课程章节
+      description: 例如：第1课
+      placeholder: "第X课"
+    validations:
+      required: true
 
-- **课程章节**：第 X 课 - 课程名称
-- **姓名**：
-- **提交日期**：
+  - type: input
+    id: name
+    attributes:
+      label: 姓名
+      placeholder: "你的姓名"
+    validations:
+      required: true
 
----
+  - type: input
+    id: date
+    attributes:
+      label: 提交日期
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
 
-## ✅ 完成情况
+  - type: checkboxes
+    id: completion
+    attributes:
+      label: 完成情况
+      description: 请勾选已完成的题目
+      options:
+        - label: 基础题 1
+        - label: 基础题 2
+        - label: 基础题 3
+        - label: 进阶题
+        - label: 思考题
 
-| 题号 | 状态 | 备注 |
-|:----:|:----:|------|
-| 1 | ✅/❌/🔄 | |
-| 2 | ✅/❌/🔄 | |
-| 3 | ✅/❌/🔄 | |
-| 4 | ✅/❌/🔄 | |
-| 5 | ✅/❌/🔄 | |
+  - type: textarea
+    id: answers
+    attributes:
+      label: 答题内容
+      description: 请写出你的答案
+      placeholder: |
+        ### 基础题
+        1. 答案...
 
----
+        ### 进阶题
+        4. 答案...
 
-## 📝 答题内容
+        ### 思考题
+        6. 答案...
+      value: |
+        ### 基础题
 
-### 基础题
+        #### 1.
+        你的答案：
 
-#### 1. 题目
-你的答案：
+        #### 2.
+        你的答案：
 
-#### 2. 题目
-你的答案：
+        #### 3.
+        你的答案：
 
-### 进阶题
+        ### 进阶题
 
-#### 4. 题目
-你的答案：
+        #### 4.
+        你的答案：
 
-### 思考题
+        ### 思考题
 
-#### 6. 题目
-你的答案：
+        #### 6.
+        你的答案：
+    validations:
+      required: true
 
----
+  - type: textarea
+    id: thoughts
+    attributes:
+      label: 学习心得
+      description: （可选）本课学到了什么？有什么疑问？
+      placeholder: "分享你的学习心得..."
+    validations:
+      required: false
 
-## 💭 学习心得
-
-（可选）本课学到了什么？有什么疑问？
-
----
-
-## 📎 附件
-
-（如果有代码、图片等附件，请在此说明）
+  - type: textarea
+    id: attachments
+    attributes:
+      label: 附件
+      description: （如果有代码、图片等附件，请在此说明或粘贴链接）
+      placeholder: "附件说明..."
+    validations:
+      required: false

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 课程 Wiki
+    url: https://github.com/zhangmaosen/ccf-llm-course/wiki
+    about: 查看课程知识库、术语表和 FAQ
+  - name: 💬 课程讨论区
+    url: https://github.com/zhangmaosen/ccf-llm-course/discussions
+    about: 参与课程讨论，分享学习心得

@@ -1,34 +1,53 @@
----
 name: 🚀 内容建议
-about: 建议新增内容或改进
-title: '[建议] 简述建议内容'
-labels: enhancement
-assignees: ''
----
+description: 建议新增内容或改进
+title: "[建议] "
+labels: [enhancement]
+assignees: []
+body:
+  - type: input
+    id: lesson
+    attributes:
+      label: 相关课程
+      description: 例如：第1课
+      placeholder: "第X课（或整体建议）"
+    validations:
+      required: true
 
-## 💡 建议描述
+  - type: dropdown
+    id: type
+    attributes:
+      label: 建议类型
+      options:
+        - 新增内容
+        - 内容改进
+        - 新增功能
+        - 其他
+    validations:
+      required: true
 
-- **相关课程**：第 X 课
-- **建议类型**：新增内容 / 内容改进 / 其他
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 建议内容
+      description: 详细描述你的建议
+      placeholder: "我建议..."
+    validations:
+      required: true
 
----
+  - type: textarea
+    id: benefit
+    attributes:
+      label: 预期效果
+      description: 这个建议能带来什么改进？
+      placeholder: "这样可以..."
+    validations:
+      required: false
 
-## 📋 建议内容
-
-（详细描述你的建议）
-
----
-
-## 🎯 预期效果
-
-（这个建议能带来什么改进？）
-
----
-
-## 📚 参考资料
-
-（如有参考，请附上链接）
-
----
-
-感谢你的建议！🙏
+  - type: textarea
+    id: reference
+    attributes:
+      label: 参考资料
+      description: 如有参考，请附上链接
+      placeholder: "参考链接..."
+    validations:
+      required: false

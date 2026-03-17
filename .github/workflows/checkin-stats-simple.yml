@@ -2,7 +2,7 @@ name: 统计打卡数据
 
 on:
   schedule:
-    - cron: '0 */2 * * *'  # 每2小时运行
+    - cron: '0 */2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -19,114 +19,84 @@ jobs:
       - name: Calculate Stats
         id: calc
         run: |
-          # 总打卡数
           TOTAL=$(gh issue list --label checkin --state open --json number 2>/dev/null | jq 'length' 2>/dev/null || echo "0")
-          
-          # 今日打卡
           TODAY=$(date -u +%Y-%m-%d)
           TODAY_NUM=$(gh issue list --label checkin --state open --search "created:>=$TODAY" --json number 2>/dev/null | jq 'length' 2>/dev/null || echo "0")
-          
-          # 参与人数
-          USERS=$(gh issue list --label checkin --state open --json user 2>/dev/null | jq -r '.[].user.login' 2>/dev/null | sort -u | wc -l | tr -d ' ' || echo "0")
+          USERS=$(gh issue list --label checkin --state open --json author 2>/dev/null | jq -r '.[].author.login' 2>/dev/null | sort -u | wc -l | tr -d ' ' || echo "0")
           
           echo "total=$TOTAL" >> $GITHUB_OUTPUT
           echo "today=$TODAY_NUM" >> $GITHUB_OUTPUT
           echo "users=$USERS" >> $GITHUB_OUTPUT
-          
-          echo "## 📊 打卡统计" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| 指标 | 数值 |" >> $GITHUB_STEP_SUMMARY
-          echo "|:----:|:----:|" >> $GITHUB_STEP_SUMMARY
-          echo "| 总打卡数 | $TOTAL |" >> $GITHUB_STEP_SUMMARY
-          echo "| 今日打卡 | $TODAY_NUM |" >> $GITHUB_STEP_SUMMARY
-          echo "| 参与人数 | $USERS |" >> $GITHUB_STEP_SUMMARY
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update Stats File
+      - name: Update Stats
         run: |
-          mkdir -p stats
+          mkdir -p stats docs
           
-          # 更新详细统计
+          # 更新统计 JSON
           cat > stats/checkin.json << EOF
-          {
-            "total": ${{ steps.calc.outputs.total }},
-            "today": ${{ steps.calc.outputs.today }},
-            "users": ${{ steps.calc.outputs.users }},
-            "updated": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          }
+          {"total": ${{ steps.calc.outputs.total }}, "today": ${{ steps.calc.outputs.today }}, "users": ${{ steps.calc.outputs.users }}, "updated": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"}
           EOF
           
-          # 更新徽章
+          # 更新徽章 JSON
           cat > stats/badge.json << EOF
-          {
-            "schemaVersion": 1,
-            "label": "打卡总数",
-            "message": "${{ steps.calc.outputs.total }}",
-            "color": "blue"
-          }
+          {"schemaVersion": 1, "label": "打卡总数", "message": "${{ steps.calc.outputs.total }}", "color": "blue"}
           EOF
           
-          # 更新排行榜
-          mkdir -p docs
-          cat > docs/leaderboard.md << 'LEADERBOARD_EOF'
+          # 生成排行榜
+          DATE=$(date '+%Y-%m-%d')
+          MONTH=$(date '+%Y年%m月')
+          TOTAL=${{ steps.calc.outputs.total }}
+          USERS=${{ steps.calc.outputs.users }}
+          TODAY=${{ steps.calc.outputs.today }}
+          
+          # 获取打卡列表
+          RANK_DATA=$(gh issue list --label checkin --state open --json title,createdAt --limit 10 2>/dev/null | \
+            jq -r 'to_entries | map("| \(1+.key) | \(.value.title | gsub("\\[打卡\\] "; "") | split(" - ")[1] // "匿名") | 1 | \(.value.createdAt[:10]) | 🌱 |") | join("\n")' 2>/dev/null || echo "| 1 | 暂无数据 | - | - | - |")
+          
+          cat > docs/leaderboard.md << EOF
           # 🏆 打卡排行榜
-
-          > 更新时间：LEADERBOARD_DATE
-
+          
+          > 更新时间：$DATE
+          
           ---
-
+          
           ## 📅 本月排行
-
-          > LEADERBOARD_MONTH
-
-          | 排名 | 姓名 | 打卡天数 | 最新打卡 | 状态 |
+          
+          > $MONTH
+          
+          | 排名 | 姓名 | 打卡天数 | 最新打卡 | 徽章 |
           |:----:|------|:--------:|:--------:|:----:|
-          LEADERBOARD_MONTH_DATA
-
+          $RANK_DATA
+          
           ---
-
+          
           ## 📊 统计概览
-
+          
           | 指标 | 数值 |
           |:----:|:----:|
-          | 总打卡次数 | LEADERBOARD_TOTAL |
-          | 参与人数 | LEADERBOARD_USERS |
-          | 今日打卡 | LEADERBOARD_TODAY |
-
+          | 总打卡次数 | $TOTAL |
+          | 参与人数 | $USERS |
+          | 今日打卡 | $TODAY |
+          
           ---
-
+          
           ## 🎖️ 徽章说明
-
+          
           | 徽章 | 名称 | 获得条件 |
           |:---:|------|----------|
           | 🌱 | 学习新芽 | 首次打卡 |
-          | 🌿 | 学习幼苗 | 连续打卡7天 |
-          | 🌳 | 学习大树 | 连续打卡21天 |
-          | 🏆 | 学习达人 | 连续打卡100天 |
-
+          | 🌿 | 学习幼苗 | 连续7天 |
+          | 🌳 | 学习大树 | 连续21天 |
+          | 🏆 | 学习达人 | 连续100天 |
+          
           ---
-
-          **想上榜吗？** [立即打卡](../issues/new?template=checkin.yml) 开始你的学习之旅！
-
-          ---
-
-          *排行榜由 GitHub Actions 自动更新*
-          LEADERBOARD_EOF
           
-          # 替换变量
-          sed -i "s/LEADERBOARD_DATE/$(date '+%Y-%m-%d %H:%M')/g" docs/leaderboard.md
-          sed -i "s/LEADERBOARD_MONTH/$(date '+%Y年%m月')/g" docs/leaderboard.md
-          sed -i "s/LEADERBOARD_TOTAL/${{ steps.calc.outputs.total }}/g" docs/leaderboard.md
-          sed -i "s/LEADERBOARD_USERS/${{ steps.calc.outputs.users }}/g" docs/leaderboard.md
-          sed -i "s/LEADERBOARD_TODAY/${{ steps.calc.outputs.today }}/g" docs/leaderboard.md
-          
-          # 获取打卡数据生成排行榜
-          gh issue list --label checkin --state open --json title,createdAt,author --limit 100 | \
-            jq -r 'to_entries | .[:10] | to_entries | map("| \(1+.key) | \(.value.value.title | gsub("\\[打卡\\] "; "") | split(" - ")[1] // "匿名") | 1 | \(.value.value.createdAt[:10]) | 🌱 新手上路 |") | join("\n")' > /tmp/leader.txt 2>/dev/null || echo "| 🥇 | 暂无数据 | - | - | - |" > /tmp/leader.txt
-          
-          sed -i "/LEADERBOARD_MONTH_DATA/r /tmp/leader.txt" docs/leaderboard.md
-          sed -i "/LEADERBOARD_MONTH_DATA/d" docs/leaderboard.md
+          [立即打卡](../issues/new?template=checkin.yml) 开始你的学习之旅！
+          EOF
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit
         run: |

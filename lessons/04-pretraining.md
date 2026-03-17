@@ -416,3 +416,6 @@ Batch Size = 1000：一次做1000道题
 |------|------|
 | 📅 打卡记录 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
 | 📝 课后练习 | [测试题](../exercises/test-04.md) |ion-tuning.md)**
+---
+
+> ⚠️ 声明：本项目为个人学习分享，无商业行为，纯属个人爱好。

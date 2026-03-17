@@ -383,3 +383,6 @@ Chatbot Arena
 |------|------|
 | 📅 打卡记录 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
 | 📝 课后练习 | [测试题](../exercises/test-11.md) |�课](10-agent.md) | [下一课：模型伦理与安全 →](12-ethics.md)**
+---
+
+> ⚠️ 声明：本项目为个人学习分享，无商业行为，纯属个人爱好。

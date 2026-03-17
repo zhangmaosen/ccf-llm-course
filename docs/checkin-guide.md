@@ -149,3 +149,6 @@ A: 多学习、多分享、多提问，坚持连续打卡！
 ---
 
 **开始你的学习之旅：** [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml)
+---
+
+> ⚠️ 声明：本项目为个人学习分享，无商业行为，纯属个人爱好。

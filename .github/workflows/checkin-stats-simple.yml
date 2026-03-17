@@ -33,7 +33,7 @@ jobs:
           # 统计用户数
           USERS=$(echo "$ISSUES" | jq '[.[].author.login] | unique | length')
           
-          # 按用户统计打卡天数并生成排行
+          # 按用户统计打卡天数并生成排行（按打卡天数降序）
           RANK_DATA=$(echo "$ISSUES" | jq -r '
             group_by(.author.login) |
             map({
@@ -41,7 +41,8 @@ jobs:
               count: length,
               latest: (map(.createdAt) | max | .[:10])
             }) |
-            sort_by(-.count, -.latest) |
+            sort_by(-.count) |
+            reverse |
             to_entries |
             .[] |
             "| \(1+.key) | \(.value.user) | \(.value.count) | \(.value.latest) | 🌱 |"
@@ -59,42 +60,42 @@ jobs:
           
           cat > docs/leaderboard.md << ENDOFFILE
           # 🏆 打卡排行榜
-          
+
           > 更新时间：$DATE
-          
+
           ---
-          
+
           ## 📅 本月排行
-          
+
           > $MONTH
-          
+
           | 排名 | 姓名 | 打卡天数 | 最新打卡 | 徽章 |
           |:----:|------|:--------:|:--------:|:----:|
           $RANK_DATA
-          
+
           ---
-          
+
           ## 📊 统计概览
-          
+
           | 指标 | 数值 |
           |:----:|:----:|
           | 总打卡次数 | $TOTAL |
           | 参与人数 | $USERS |
           | 今日打卡 | $TODAY_NUM |
-          
+
           ---
-          
+
           ## 🎖️ 徽章说明
-          
+
           | 徽章 | 名称 | 获得条件 |
           |:---:|------|----------|
           | 🌱 | 学习新芽 | 首次打卡 |
           | 🌿 | 学习幼苗 | 连续7天 |
           | 🌳 | 学习大树 | 连续21天 |
           | 🏆 | 学习达人 | 连续100天 |
-          
+
           ---
-          
+
           [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) 开始你的学习之旅！
           ENDOFFILE
           

@@ -17,53 +17,57 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Calculate Stats
-        id: calc
-        run: |
-          TOTAL=$(gh issue list --label checkin --state open --json number 2>/dev/null | jq 'length' 2>/dev/null || echo "0")
-          TODAY=$(date -u +%Y-%m-%d)
-          TODAY_NUM=$(gh issue list --label checkin --state open --search "created:>=$TODAY" --json number 2>/dev/null | jq 'length' 2>/dev/null || echo "0")
-          USERS=$(gh issue list --label checkin --state open --json author 2>/dev/null | jq -r '.[].author.login' 2>/dev/null | sort -u | wc -l | tr -d ' ' || echo "0")
-          
-          echo "total=$TOTAL" >> $GITHUB_OUTPUT
-          echo "today=$TODAY_NUM" >> $GITHUB_OUTPUT
-          echo "users=$USERS" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Update Stats
         run: |
           mkdir -p stats docs
           
-          TOTAL=${{ steps.calc.outputs.total }}
-          TODAY=${{ steps.calc.outputs.today }}
-          USERS=${{ steps.calc.outputs.users }}
-          DATE=$(date '+%Y-%m-%d')
-          MONTH=$(date '+%Y年%m月')
+          # 获取所有打卡数据
+          ISSUES=$(gh issue list --label checkin --state open --json author,createdAt --limit 100)
+          
+          # 统计总数、今日、用户数
+          TOTAL=$(echo "$ISSUES" | jq 'length')
+          TODAY=$(date -u +%Y-%m-%d)
+          TODAY_NUM=$(echo "$ISSUES" | jq --arg d "$TODAY" '[.[] | select(.createdAt | startswith($d))] | length')
+          USERS=$(echo "$ISSUES" | jq '[.[].author.login] | unique | length')
+          
+          # 按用户统计打卡天数
+          RANK_DATA=$(echo "$ISSUES" | jq -r '
+            group_by(.author.login) | 
+            to_entries | 
+            map({
+              user: .value[0].author.login,
+              count: (.value | length),
+              latest: ([.[].createdAt] | max | .[:10])
+            }) |
+            sort_by(-.count, -.latest) |
+            to_entries |
+            map("| \(1+.key) | \(.value.user) | \(.value.count) | \(.value.latest) | 🌱 |") |
+            join("\n")
+          ')
           
           # 更新统计 JSON
-          echo "{\"total\": $TOTAL, \"today\": $TODAY, \"users\": $USERS, \"updated\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > stats/checkin.json
+          echo "{\"total\": $TOTAL, \"today\": $TODAY_NUM, \"users\": $USERS, \"updated\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > stats/checkin.json
           
           # 更新徽章 JSON
           echo "{\"schemaVersion\": 1, \"label\": \"打卡总数\", \"message\": \"$TOTAL\", \"color\": \"blue\"}" > stats/badge.json
           
-          # 获取打卡列表
-          RANK_DATA=$(gh issue list --label checkin --state open --json author,createdAt --limit 10 --jq '.[] | "| 1 | \(.author.login) | 1 | \(.createdAt[:10]) | 🌱 |"' 2>/dev/null || echo "| 1 | 暂无数据 | - | - | - |")
-          
           # 生成排行榜
-          cat > docs/leaderboard.md << 'ENDOFFILE'
+          DATE=$(date '+%Y-%m-%d')
+          MONTH=$(date '+%Y年%m月')
+          
+          cat > docs/leaderboard.md << ENDOFFILE
           # 🏆 打卡排行榜
           
-          > 更新时间：DATE_PLACEHOLDER
+          > 更新时间：$DATE
           
           ---
           
           ## 📅 本月排行
           
-          > MONTH_PLACEHOLDER
+          > $MONTH
           
           | 排名 | 姓名 | 打卡天数 | 最新打卡 | 徽章 |
           |:----:|------|:--------:|:--------:|:----:|
-          RANK_DATA_PLACEHOLDER
+          $RANK_DATA
           
           ---
           
@@ -71,9 +75,9 @@ jobs:
           
           | 指标 | 数值 |
           |:----:|:----:|
-          | 总打卡次数 | TOTAL_PLACEHOLDER |
-          | 参与人数 | USERS_PLACEHOLDER |
-          | 今日打卡 | TODAY_PLACEHOLDER |
+          | 总打卡次数 | $TOTAL |
+          | 参与人数 | $USERS |
+          | 今日打卡 | $TODAY_NUM |
           
           ---
           
@@ -88,17 +92,10 @@ jobs:
           
           ---
           
-          [立即打卡](../issues/new?template=checkin.yml) 开始你的学习之旅！
+          [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) 开始你的学习之旅！
           ENDOFFILE
           
-          # 替换占位符
-          sed -i "s/DATE_PLACEHOLDER/$DATE/g" docs/leaderboard.md
-          sed -i "s/MONTH_PLACEHOLDER/$MONTH/g" docs/leaderboard.md
-          sed -i "s/TOTAL_PLACEHOLDER/$TOTAL/g" docs/leaderboard.md
-          sed -i "s/USERS_PLACEHOLDER/$USERS/g" docs/leaderboard.md
-          sed -i "s/TODAY_PLACEHOLDER/$TODAY/g" docs/leaderboard.md
-          # RANK_DATA 可能包含特殊字符，用 awk 替换
-          awk -v val="$RANK_DATA" '{gsub(/RANK_DATA_PLACEHOLDER/, val)}1' docs/leaderboard.md > docs/leaderboard_tmp.md && mv docs/leaderboard_tmp.md docs/leaderboard.md
+          echo "Stats updated: Total=$TOTAL, Today=$TODAY_NUM, Users=$USERS"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -208,9 +208,6 @@
 
 ### 4.1 模仿人脑
 
-![神经网络可视化](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/800px-Colored_neural_network.svg.png)
-*图：神经网络结构示意（来源：Wikipedia）*
-
 **人脑神经元：**
 ```
     树突（接收信号）
@@ -219,6 +216,17 @@
    ┌──────┐
    │ 细胞 │ ──→ 轴突（传递信号）
    │ 体   │
+   └──────┘
+```
+
+**人工神经元：**
+```
+    输入
+      │
+      ▼
+   ┌──────┐
+   │ 计算 │ ──→ 输出
+   │ 单元 │
    └──────┘
 ```
 

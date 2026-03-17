@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -22,53 +22,72 @@
         .container {
             background: white;
             border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
+            padding: 30px 40px;
+            max-width: 700px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-        h1 {
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .header h1 {
             color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
+            font-size: 26px;
         }
         .subtitle {
             color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+        .content {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        .left {
+            flex: 1;
+        }
+        .right {
+            flex: 1;
         }
         .date-box {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 12px;
             padding: 20px;
-            margin-bottom: 25px;
             text-align: center;
+            margin-bottom: 20px;
         }
         .date-label {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 8px;
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            margin-bottom: 5px;
         }
         .date-value {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
-            color: #667eea;
+            color: white;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         label {
             display: block;
             color: #333;
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            font-size: 14px;
         }
         input, select {
             width: 100%;
-            padding: 12px 16px;
+            padding: 10px 14px;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 15px;
             transition: border-color 0.3s;
         }
         input:focus, select:focus {
@@ -78,56 +97,95 @@
         .btn {
             display: block;
             width: 100%;
-            padding: 16px;
+            padding: 12px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 18px;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
         .hint {
             margin-top: 20px;
-            padding: 15px;
-            background: #fff3cd;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #856404;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
         }
-        .hint strong {
-            display: block;
-            margin-bottom: 5px;
+        .hint-icon {
+            margin-right: 5px;
+        }
+        @media (max-width: 600px) {
+            .content {
+                flex-direction: column;
+            }
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📅 学习打卡</h1>
-        <p class="subtitle">CCF 大模型能力认证课程</p>
-        
-        <div class="date-box">
-            <div class="date-label">今天日期</div>
-            <div class="date-value" id="today"></div>
+        <div class="header">
+            <div>
+                <h1>📅 学习打卡</h1>
+                <p class="subtitle">CCF 大模型能力认证课程</p>
+            </div>
         </div>
         
-        <div class="form-group">
-            <label for="name">姓名</label>
-            <input type="text" id="name" placeholder="请输入你的姓名">
-        </div>
-        
-        <button class="btn" onclick="openCheckin()">
-            📝 立即打卡
-        </button>
-        
-        <div class="hint">
-            <strong>💡 使用说明</strong>
-            点击按钮后，会打开 GitHub Issue 页面。标题已自动填充日期，只需修改姓名即可！
+        <div class="content">
+            <div class="left">
+                <div class="date-box">
+                    <div class="date-label">今天日期</div>
+                    <div class="date-value" id="today"></div>
+                </div>
+                
+                <div class="hint">
+                    <span class="hint-icon">💡</span>
+                    输入姓名后点击按钮，系统会自动打开 GitHub Issue 页面，标题已自动填充日期。
+                </div>
+            </div>
+            
+            <div class="right">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" placeholder="请输入你的姓名">
+                </div>
+                
+                <div class="form-group">
+                    <label for="lesson">今日学习</label>
+                    <select id="lesson">
+                        <option value="">请选择课程</option>
+                        <option value="第1课">第1课：人工智能基础概念</option>
+                        <option value="第2课">第2课：大模型基础概念</option>
+                        <option value="第3课">第3课：模型架构</option>
+                        <option value="第4课">第4课：预训练技术</option>
+                        <option value="第5课">第5课：指令微调</option>
+                        <option value="第6课">第6课：人类对齐</option>
+                        <option value="第7课">第7课：解码与部署</option>
+                        <option value="第8课">第8课：提示学习</option>
+                        <option value="第9课">第9课：复杂推理</option>
+                        <option value="第10课">第10课：智能体</option>
+                        <option value="第11课">第11课：模型评测</option>
+                        <option value="第12课">第12课：模型伦理与安全</option>
+                        <option value="复习">复习/练习</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="openCheckin()">
+                    📝 立即打卡
+                </button>
+            </div>
         </div>
     </div>
     
@@ -138,8 +196,9 @@
         
         function openCheckin() {
             const name = document.getElementById('name').value || '姓名';
+            const lesson = document.getElementById('lesson').value || '';
             const title = encodeURIComponent(`[打卡] ${today} - ${name}`);
-            const url = `https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml&title=${title}`;
+            let url = `https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml&title=${title}`;
             window.open(url, '_blank');
         }
     </script>

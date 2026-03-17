@@ -1,6 +1,6 @@
-# 大模型能力认证课程（中小学版）
+# LMCC - CCF 大模型能力认证课程（中小学版）
 
-> 基于 CCF 大模型能力认证大纲 · 中小学组知识点表
+> Large Model Capability Certification · 基于 CCF 大模型能力认证大纲 · 中小学组知识点表
 
 ---
 

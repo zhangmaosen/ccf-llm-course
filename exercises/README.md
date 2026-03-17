@@ -8,18 +8,18 @@
 
 | 序号 | 测试 | 对应课程 | 链接 |
 |:----:|------|---------|:----:|
-| 1 | 人工智能基础概念 | 第1课 | [📝 在线测试](test-01.html) |
-| 2 | 大模型基础概念 | 第2课 | [📝 在线测试](test-02.html) |
-| 3 | 模型架构 | 第3课 | [📝 在线测试](test-03.html) |
-| 4 | 预训练技术 | 第4课 | [📝 在线测试](test-04.html) |
-| 5 | 指令微调 | 第5课 | [📝 在线测试](test-05.html) |
-| 6 | 人类对齐 | 第6课 | [📝 在线测试](test-06.html) |
-| 7 | 解码与部署 | 第7课 | [📝 在线测试](test-07.html) |
-| 8 | 提示学习 | 第8课 | [📝 在线测试](test-08.html) |
-| 9 | 复杂推理 | 第9课 | [📝 在线测试](test-09.html) |
-| 10 | 智能体 | 第 10 课 | [📝 在线测试](test-10.html) |
-| 11 | 模型评测 | 第 11 课 | [📝 在线测试](test-11.html) |
-| 12 | 模型伦理与安全 | 第 12 课 | [📝 在线测试](test-12.html) |
+| 1 | 人工智能基础概念 | 第1课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-01.html) |
+| 2 | 大模型基础概念 | 第2课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-02.html) |
+| 3 | 模型架构 | 第3课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-03.html) |
+| 4 | 预训练技术 | 第4课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-04.html) |
+| 5 | 指令微调 | 第5课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-05.html) |
+| 6 | 人类对齐 | 第6课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-06.html) |
+| 7 | 解码与部署 | 第7课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-07.html) |
+| 8 | 提示学习 | 第8课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-08.html) |
+| 9 | 复杂推理 | 第9课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-09.html) |
+| 10 | 智能体 | 第 10 课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-10.html) |
+| 11 | 模型评测 | 第 11 课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-11.html) |
+| 12 | 模型伦理与安全 | 第 12 课 | [📝 在线测试](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-12.html) |
 
 ---
 

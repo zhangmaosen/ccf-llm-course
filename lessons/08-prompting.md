@@ -408,7 +408,7 @@ print(response.choices[0].message.content)
 | 操作 | 链接 |
 |------|------|
 | 📅 打卡记录 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
-| 📝 课后练习 | [测试题](../exercises/test-08.html) |
+| 📝 课后练习 | [测试题](https://zhangmaosen.github.io/ccf-llm-course/exercises/test-08.html) |
 ---
 
 > ⚠️ 声明：本项目为个人学习分享，无商业行为，纯属个人爱好。

@@ -18,14 +18,16 @@
 
 ## 📅 学习打卡
 
-| | |
-|:--|:--|
-| **🚀 智能打卡** | [📅 自动填充日期](./checkin.html)（推荐） |
-| **📝 手动打卡** | [GitHub Issue](../../issues/new?template=checkin.yml) |
-| **🏆 排行榜** | [查看排名](./docs/leaderboard.md) |
-| **📖 打卡指南** | [使用说明](./docs/checkin-guide.md) |
+> 📅 **今日日期**：查看系统日期（格式：YYYY-MM-DD，如 2026-03-17）
 
-![Check-ins](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zhangmaosen/ccf-llm-course/main/stats/badge.json) [![Leaderboard](https://img.shields.io/badge/排行榜-查看-green)](./docs/leaderboard.md)
+| 打卡入口 | 链接 |
+|:--|:--|
+| 🚀 **智能打卡** | [自动填充日期 →](https://zhangmaosen.github.io/ccf-llm-course/checkin.html) |
+| 📝 手动打卡 | [GitHub Issue](../../issues/new?template=checkin.yml) |
+| 🏆 排行榜 | [查看排名](./docs/leaderboard.md) |
+| 📖 使用指南 | [打卡说明](./docs/checkin-guide.md) |
+
+![Check-ins](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zhangmaosen/ccf-llm-course/main/stats/badge.json)
 
 ---
 

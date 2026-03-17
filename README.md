@@ -41,15 +41,13 @@
 
 ## 📋 作业系统
 
-| 提交作业 | 提问求助 | 分享笔记 | 查看排行 |
-|:--:|:--:|:--:|:--:|
-| [📝 提交](../../issues/new?template=homework.yml) | [❓ 提问](../../issues/new?template=question.yml) | [💡 分享](../../issues/new?template=notes.yml) | [🏆 排行](./docs/leaderboard.md) |
+| 提交作业 | 提问求助 | 分享笔记 |
+|:--:|:--:|:--:|
+| [📝](../../issues/new?template=homework.yml) | [❓](../../issues/new?template=question.yml) | [💡](../../issues/new?template=notes.yml) |
 
-| 其他功能 | 链接 |
-|:--|:--|
-| 💬 课程讨论 | [Discussions](../../discussions) |
-| 📚 知识库 | [Wiki](../../wiki) |
-| 📖 作业指南 | [SUBMISSION_GUIDE](./.github/SUBMISSION_GUIDE.md) |
+| 排行榜 | Wiki |
+|:--:|:--:|
+| [🏆](./docs/leaderboard.md) | [📚](../../wiki) |
 
 ---
 

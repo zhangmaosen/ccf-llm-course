@@ -1,104 +1,33 @@
 name: 📝 作业提交
 description: 提交课程作业
-title: "[作业] 第X课 - "
+title: "[作业] 第X课"
 labels: [homework]
 assignees: []
 body:
-  - type: markdown
-    attributes:
-      value: |
-        ## 📋 作业信息
-        请填写以下信息完成作业提交
-
-  - type: input
+  - type: dropdown
     id: lesson
     attributes:
       label: 课程章节
-      description: 例如：第1课
-      placeholder: "第X课"
-    validations:
-      required: true
-
-  - type: input
-    id: name
-    attributes:
-      label: 姓名
-      placeholder: "你的姓名"
-    validations:
-      required: true
-
-  - type: input
-    id: date
-    attributes:
-      label: 提交日期
-      placeholder: "YYYY-MM-DD"
-    validations:
-      required: true
-
-  - type: checkboxes
-    id: completion
-    attributes:
-      label: 完成情况
-      description: 请勾选已完成的题目
       options:
-        - label: 基础题 1
-        - label: 基础题 2
-        - label: 基础题 3
-        - label: 进阶题
-        - label: 思考题
-
-  - type: textarea
-    id: answers
-    attributes:
-      label: 答题内容
-      description: 请写出你的答案
-      placeholder: |
-        ### 基础题
-        1. 答案...
-
-        ### 进阶题
-        4. 答案...
-
-        ### 思考题
-        6. 答案...
-      value: |
-        ### 基础题
-
-        #### 1.
-        你的答案：
-
-        #### 2.
-        你的答案：
-
-        #### 3.
-        你的答案：
-
-        ### 进阶题
-
-        #### 4.
-        你的答案：
-
-        ### 思考题
-
-        #### 6.
-        你的答案：
+        - 第1课
+        - 第2课
+        - 第3课
+        - 第4课
+        - 第5课
+        - 第6课
+        - 第7课
+        - 第8课
+        - 第9课
+        - 第10课
+        - 第11课
+        - 第12课
     validations:
       required: true
 
   - type: textarea
-    id: thoughts
+    id: content
     attributes:
-      label: 学习心得
-      description: （可选）本课学到了什么？有什么疑问？
-      placeholder: "分享你的学习心得..."
+      label: 作业内容
+      placeholder: 在此填写作业答案...
     validations:
-      required: false
-
-  - type: textarea
-    id: attachments
-    attributes:
-      label: 附件
-      description: （如果有代码、图片等附件，请在此说明或粘贴链接）
-      placeholder: "附件说明..."
-    validations:
-      required: false
+      required: true

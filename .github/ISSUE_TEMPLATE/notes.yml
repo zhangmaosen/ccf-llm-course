@@ -1,62 +1,13 @@
-name: 💡 学习笔记分享
-description: 分享你的学习笔记和心得
+name: 💡 学习笔记
+description: 分享学习心得
 title: "[笔记] "
 labels: [notes]
 assignees: []
 body:
-  - type: input
-    id: lesson
-    attributes:
-      label: 课程章节
-      description: 例如：第1课
-      placeholder: "第X课"
-    validations:
-      required: true
-
-  - type: input
-    id: topic
-    attributes:
-      label: 笔记主题
-      placeholder: "例如：注意力机制的理解"
-    validations:
-      required: true
-
   - type: textarea
     id: notes
     attributes:
-      label: 学习笔记
-      description: 在这里分享你的笔记内容
-      placeholder: |
-        ### 核心概念
-
-        ### 关键知识点
-
-        ### 疑问与思考
-      value: |
-        ### 核心概念
-
-        ### 关键知识点
-
-        ### 我的理解
-
-        ### 疑问与思考
+      label: 笔记内容
+      placeholder: 分享你的学习心得...
     validations:
       required: true
-
-  - type: textarea
-    id: resources
-    attributes:
-      label: 相关资源
-      description: 分享你找到的优质学习资源
-      placeholder: "链接..."
-    validations:
-      required: false
-
-  - type: textarea
-    id: thoughts
-    attributes:
-      label: 学习心得
-      description: 分享你的学习体会
-      placeholder: "我学到了..."
-    validations:
-      required: false

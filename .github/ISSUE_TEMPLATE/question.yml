@@ -4,52 +4,10 @@ title: "[问题] "
 labels: [question]
 assignees: []
 body:
-  - type: input
-    id: lesson
-    attributes:
-      label: 相关课程
-      description: 例如：第1课
-      placeholder: "第X课"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: type
-    attributes:
-      label: 问题类型
-      options:
-        - 概念理解
-        - 代码实现
-        - 其他
-    validations:
-      required: true
-
   - type: textarea
-    id: problem
+    id: question
     attributes:
       label: 问题描述
-      description: 请详细描述你遇到的问题
-      placeholder: "我遇到了一个问题..."
+      placeholder: 详细描述你的问题...
     validations:
       required: true
-
-  - type: textarea
-    id: tried
-    attributes:
-      label: 已尝试的解决方法
-      description: 列出你已经尝试的方法
-      placeholder: |
-        1.
-        2.
-        3.
-    validations:
-      required: false
-
-  - type: textarea
-    id: expect
-    attributes:
-      label: 期望得到的帮助
-      description: 你希望得到什么样的解答？
-      placeholder: "希望..."
-    validations:
-      required: false

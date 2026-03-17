@@ -23,25 +23,28 @@ jobs:
           # 获取所有打卡数据
           ISSUES=$(gh issue list --label checkin --state open --json author,createdAt --limit 100)
           
-          # 统计总数、今日、用户数
+          # 统计总数
           TOTAL=$(echo "$ISSUES" | jq 'length')
+          
+          # 统计今日打卡
           TODAY=$(date -u +%Y-%m-%d)
           TODAY_NUM=$(echo "$ISSUES" | jq --arg d "$TODAY" '[.[] | select(.createdAt | startswith($d))] | length')
+          
+          # 统计用户数
           USERS=$(echo "$ISSUES" | jq '[.[].author.login] | unique | length')
           
-          # 按用户统计打卡天数
+          # 按用户统计打卡天数并生成排行
           RANK_DATA=$(echo "$ISSUES" | jq -r '
-            group_by(.author.login) | 
-            to_entries | 
+            group_by(.author.login) |
             map({
-              user: .value[0].author.login,
-              count: (.value | length),
-              latest: ([.[].createdAt] | max | .[:10])
+              user: .[0].author.login,
+              count: length,
+              latest: (map(.createdAt) | max | .[:10])
             }) |
             sort_by(-.count, -.latest) |
             to_entries |
-            map("| \(1+.key) | \(.value.user) | \(.value.count) | \(.value.latest) | 🌱 |") |
-            join("\n")
+            .[] |
+            "| \(1+.key) | \(.value.user) | \(.value.count) | \(.value.latest) | 🌱 |"
           ')
           
           # 更新统计 JSON

@@ -1,22 +1,29 @@
 name: 📅 每日打卡
 description: 记录每日学习进度
-title: "[打卡] YYYY-MM-DD - 姓名"
+title: "[打卡] 请修改为今天的日期 - 你的姓名"
 labels: [checkin]
 assignees: []
 body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📅 今日打卡
+        
+        请填写以下信息完成打卡。日期格式：YYYY-MM-DD（如：2026-03-17）
+
   - type: input
     id: date
     attributes:
-      label: 打卡日期
-      description: 今天的日期
-      placeholder: "YYYY-MM-DD"
+      label: 📅 打卡日期
+      description: 请填写今天的日期（格式：YYYY-MM-DD）
+      placeholder: "例如：2026-03-17"
     validations:
       required: true
 
   - type: input
     id: name
     attributes:
-      label: 姓名
+      label: 👤 姓名
       placeholder: "你的姓名"
     validations:
       required: true

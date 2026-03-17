@@ -1,45 +1,19 @@
 name: 📅 每日打卡
-description: 记录每日学习进度
-title: "[打卡] 请修改日期和姓名"
+description: 记录学习进度
+title: "[打卡] 请修改为你的姓名"
 labels: [checkin]
 assignees: []
 body:
   - type: markdown
     attributes:
       value: |
-        ## 📅 打卡信息
+        💡 信息已自动填充，直接点击底部 **Submit new issue** 按钮即可完成打卡！
         
-        > 💡 如果是从打卡页面跳转，信息已自动填充，直接点击底部绿色按钮提交即可！
-
-  - type: textarea
-    id: info
-    attributes:
-      label: 📋 打卡信息
-      description: 打卡日期、姓名、课程、时长等信息
-      placeholder: |
-        - 打卡日期：YYYY-MM-DD
-        - 姓名：
-        - 今日学习：
-        - 学习时长：
-    validations:
-      required: true
+        打卡时间以 Issue 创建时间为准。
 
   - type: textarea
     id: content
     attributes:
-      label: 📝 今日学习内容
-      description: 简要描述今天学了什么
-      placeholder: |
-        - 学习了...
-        - 完成了...
+      label: 打卡内容
     validations:
       required: true
-
-  - type: textarea
-    id: thoughts
-    attributes:
-      label: 💭 学习心得（可选）
-      description: 今天的收获或疑问
-      placeholder: 今天学到了...
-    validations:
-      required: false

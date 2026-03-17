@@ -8,10 +8,18 @@
 
 ### 1. 评测模型的主要目的是？
 
-- A. 让模型更漂亮
-- B. 比较不同模型、发现问题、评估改进
-- C. 增加模型参数
-- D. 减少训练时间
+
+A. 
+让模型更漂亮
+
+B. 
+比较不同模型、发现问题、评估改进
+
+C. 
+增加模型参数
+
+D. 
+减少训练时间
 
 <details>
 <summary>💡 点击查看答案</summary>
@@ -25,10 +33,18 @@
 
 ### 2. 精确率的公式是？
 
-- A. TP / (TP + FP)
-- B. TP / (TP + FN)
-- C. (TP + TN) / 总数
-- D. 2 × P × R / (P + R)
+
+A. 
+TP / (TP + FP)
+
+B. 
+TP / (TP + FN)
+
+C. 
+(TP + TN) / 总数
+
+D. 
+2 × P × R / (P + R)
 
 <details>
 <summary>💡 点击查看答案</summary>
@@ -42,10 +58,18 @@
 
 ### 3. 以下哪个是中文综合能力评测数据集？
 
-- A. MMLU
-- B. C-Eval
-- C. ImageNet
-- D. CIFAR
+
+A. 
+MMLU
+
+B. 
+C-Eval
+
+C. 
+ImageNet
+
+D. 
+CIFAR
 
 <details>
 <summary>💡 点击查看答案</summary>
@@ -59,10 +83,18 @@ C-Eval 是中文综合能力评测数据集。MMLU 是英文的，ImageNet 和 C
 
 ### 4. 困惑度（Perplexity）用于评测？
 
-- A. 图像模型
-- B. 语言模型
-- C. 语音模型
-- D. 视频模型
+
+A. 
+图像模型
+
+B. 
+语言模型
+
+C. 
+语音模型
+
+D. 
+视频模型
 
 <details>
 <summary>💡 点击查看答案</summary>

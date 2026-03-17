@@ -8,10 +8,13 @@
 
 ### 1. 人工智能的英文缩写是？
 
-- A. AI
-- B. ML
-- C. DL
-- D. NLP
+A. AI
+
+B. ML
+
+C. DL
+
+D. NLP
 
 <details>
 <summary>💡 点击查看答案</summary>
@@ -25,10 +28,13 @@ AI = Artificial Intelligence
 
 ### 2. 以下哪个是机器学习的基本流程？
 
-- A. 收集数据 → 直接使用
-- B. 数据预处理 → 模型训练 → 验证测试
-- C. 编写代码 → 运行程序
-- D. 购买设备 → 安装软件
+A. 收集数据 → 直接使用
+
+B. 数据预处理 → 模型训练 → 验证测试
+
+C. 编写代码 → 运行程序
+
+D. 购买设备 → 安装软件
 
 <details>
 <summary>💡 点击查看答案</summary>
@@ -42,10 +48,13 @@ AI = Artificial Intelligence
 
 ### 3. 精确率(Precision)是指？
 
-- A. 预测正确的比例
-- B. 预测为正的有多少是对的
-- C. 实际为正的有多少被找出来
-- D. 以上都不是
+A. 预测正确的比例
+
+B. 预测为正的有多少是对的
+
+C. 实际为正的有多少被找出来
+
+D. 以上都不是
 
 <details>
 <summary>💡 点击查看答案</summary>
@@ -59,10 +68,13 @@ AI = Artificial Intelligence
 
 ### 4. 以下哪个属于自然语言处理的应用？
 
-- A. 人脸识别
-- B. 自动驾驶
-- C. 机器翻译
-- D. 医学影像诊断
+A. 人脸识别
+
+B. 自动驾驶
+
+C. 机器翻译
+
+D. 医学影像诊断
 
 <details>
 <summary>💡 点击查看答案</summary>

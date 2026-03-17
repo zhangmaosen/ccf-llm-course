@@ -15,7 +15,19 @@
 ![Check-ins](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zhangmaosen/ccf-llm-course/main/stats/badge.json)
 [![Leaderboard](https://img.shields.io/badge/排行榜-查看-green)](./docs/leaderboard.md)
 
-**快速入口：** [📅 打卡](../../issues/new?template=checkin.yml) · [🏆 排行榜](./docs/leaderboard.md) · [📖 指南](./docs/checkin-guide.md)
+### 🚀 快速打卡（推荐）
+
+点击下方按钮，**自动填充今天的日期**：
+
+👉 **[📅 智能打卡入口](https://zhangmaosen.github.io/ccf-llm-course/checkin.html)**
+
+> 💡 打开后只需输入姓名，日期自动填充！
+
+### 📝 其他入口
+
+- [GitHub 打卡](../../issues/new?template=checkin.yml)（手动填写日期）
+- [🏆 排行榜](./docs/leaderboard.md)
+- [📖 打卡指南](./docs/checkin-guide.md)
 
 ---
 

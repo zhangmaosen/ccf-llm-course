@@ -1,0 +1,45 @@
+name: 打卡自动填充日期
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  auto-fill-date:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'checkin')
+    steps:
+      - name: 添加当前日期评论
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TODAY=$(date '+%Y-%m-%d')
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          
+          # 如果标题还是模板格式，自动更新
+          if [[ "$ISSUE_TITLE" == *"请修改"* ]] || [[ "$ISSUE_TITLE" == *"YYYY-MM-DD"* ]]; then
+            # 不修改标题，只在评论中提示
+            gh issue comment $ISSUE_NUMBER --body "📅 **系统提示**
+
+今天日期：**${TODAY}**
+
+请按以下格式修改标题：
+\`\`\`
+[打卡] ${TODAY} - 你的姓名
+\`\`\`
+
+---
+
+**打卡快速指南：**
+1. 修改标题中的日期和姓名
+2. 选择今日学习的课程
+3. 填写学习内容
+4. 提交 Issue
+
+---
+*此消息由系统自动发送*"
+          fi

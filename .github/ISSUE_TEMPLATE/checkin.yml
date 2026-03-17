@@ -1,19 +1,19 @@
 name: 📅 每日打卡
-description: 记录学习进度
-title: "[打卡] 请修改为你的姓名"
+description: 一键打卡
+title: "[打卡]"
 labels: [checkin]
 assignees: []
 body:
   - type: markdown
     attributes:
       value: |
-        💡 信息已自动填充，直接点击底部 **Submit new issue** 按钮即可完成打卡！
+        ✅ 直接点击 **Submit new issue** 完成打卡！
         
-        打卡时间以 Issue 创建时间为准。
+        打卡人：你的 GitHub 用户名
+        打卡时间：Issue 创建时间
 
   - type: textarea
     id: content
     attributes:
-      label: 打卡内容
-    validations:
-      required: true
+      label: 今日学习（可选）
+      placeholder: 今天学了什么？

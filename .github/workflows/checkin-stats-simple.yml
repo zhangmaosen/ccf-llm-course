@@ -51,9 +51,9 @@ jobs:
           USERS=${{ steps.calc.outputs.users }}
           TODAY=${{ steps.calc.outputs.today }}
           
-          # 获取打卡列表
-          RANK_DATA=$(gh issue list --label checkin --state open --json title,createdAt --limit 10 2>/dev/null | \
-            jq -r 'to_entries | map("| \(1+.key) | \(.value.title | gsub("\\[打卡\\] "; "") | split(" - ")[1] // "匿名") | 1 | \(.value.createdAt[:10]) | 🌱 |") | join("\n")' 2>/dev/null || echo "| 1 | 暂无数据 | - | - | - |"))
+          # 获取打卡列表（从作者获取姓名）
+          RANK_DATA=$(gh issue list --label checkin --state open --json title,createdAt,author --limit 10 2>/dev/null | \
+            jq -r 'to_entries | map("| \(1+.key) | \(.value.author.login) | 1 | \(.value.createdAt[:10]) | 🌱 |") | join("\n")' 2>/dev/null || echo "| 1 | 暂无数据 | - | - | - |"))
           
           cat > docs/leaderboard.md << EOF
           # 🏆 打卡排行榜

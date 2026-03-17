@@ -97,7 +97,8 @@ jobs:
           sed -i "s/TOTAL_PLACEHOLDER/$TOTAL/g" docs/leaderboard.md
           sed -i "s/USERS_PLACEHOLDER/$USERS/g" docs/leaderboard.md
           sed -i "s/TODAY_PLACEHOLDER/$TODAY/g" docs/leaderboard.md
-          sed -i "s|RANK_DATA_PLACEHOLDER|$RANK_DATA|g" docs/leaderboard.md
+          # RANK_DATA 可能包含特殊字符，用 awk 替换
+          awk -v val="$RANK_DATA" '{gsub(/RANK_DATA_PLACEHOLDER/, val)}1' docs/leaderboard.md > docs/leaderboard_tmp.md && mv docs/leaderboard_tmp.md docs/leaderboard.md
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

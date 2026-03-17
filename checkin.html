@@ -143,9 +143,9 @@
                 </div>
                 
                 <div class="hint">
-                    💡 <strong>两种方式：</strong><br>
-                    1. 输入Token → 点击"直接提交"<br>
-                    2. 不输Token → 点击"跳转提交"
+                    💡 <strong>提交方式说明：</strong><br>
+                    • <strong>直接提交</strong>：输入 Token 后一键提交（最便捷）<br>
+                    • <strong>跳转提交</strong>：所有内容已填好，只需点击绿色"Submit new issue"按钮
                 </div>
             </div>
             
@@ -214,20 +214,18 @@
             const duration = document.getElementById('duration').value;
             const content = document.getElementById('content').value || '无';
             
-            return `## 📋 打卡信息
+            const info = `- 打卡日期：${today}
+- 姓名：${name}
+- 今日学习：${lesson}
+- 学习时长：${duration}`;
+            
+            return `### 📋 打卡信息
 
-- **打卡日期**：${today}
-- **姓名**：${name}
-- **今日学习**：${lesson}
-- **学习时长**：${duration}
+${info}
 
-## 📝 今日学习内容
+### 📝 今日学习内容
 
-${content}
-
-## 💭 学习心得
-
-（可选填写）`;
+${content || '（未填写）'}`;
         }
         
         async function submitDirect() {
@@ -282,7 +280,8 @@ ${content}
             const name = document.getElementById('name').value || '姓名';
             const title = encodeURIComponent(`[打卡] ${today} - ${name}`);
             const body = encodeURIComponent(getBody());
-            const url = `https://github.com/zhangmaosen/ccf-llm-course/issues/new?labels=checkin&template=checkin.yml&title=${title}&body=${body}`;
+            // 预填充日期字段
+            const url = `https://github.com/zhangmaosen/ccf-llm-course/issues/new?labels=checkin&template=checkin.yml&title=${title}&body=${body}&date=${today}&name=${encodeURIComponent(document.getElementById('name').value || '')}`;
             window.open(url, '_blank');
         }
         

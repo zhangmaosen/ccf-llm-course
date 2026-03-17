@@ -1,125 +1,45 @@
 name: 📅 每日打卡
 description: 记录每日学习进度
-title: "[打卡] 请修改为今天的日期 - 你的姓名"
+title: "[打卡] 请修改日期和姓名"
 labels: [checkin]
 assignees: []
 body:
   - type: markdown
     attributes:
       value: |
-        ## 📅 今日打卡
+        ## 📅 打卡信息
         
-        请填写以下信息完成打卡。日期格式：YYYY-MM-DD（如：2026-03-17）
+        > 💡 如果是从打卡页面跳转，信息已自动填充，直接点击底部绿色按钮提交即可！
 
-  - type: input
-    id: date
+  - type: textarea
+    id: info
     attributes:
-      label: 📅 打卡日期
-      description: 请填写今天的日期（格式：YYYY-MM-DD）
-      placeholder: "例如：2026-03-17"
-    validations:
-      required: true
-
-  - type: input
-    id: name
-    attributes:
-      label: 👤 姓名
-      placeholder: "你的姓名"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: lesson
-    attributes:
-      label: 今日学习课程
-      description: 今天学习了哪一课？
-      options:
-        - 第1课：人工智能基础概念
-        - 第2课：大模型基础概念
-        - 第3课：模型架构
-        - 第4课：预训练技术
-        - 第5课：指令微调
-        - 第6课：人类对齐
-        - 第7课：解码与部署
-        - 第8课：提示学习
-        - 第9课：复杂推理
-        - 第10课：智能体
-        - 第11课：模型评测
-        - 第12课：模型伦理与安全
-        - 复习/练习
-        - 其他
-    validations:
-      required: true
-
-  - type: dropdown
-    id: duration
-    attributes:
-      label: 学习时长
-      options:
-        - "< 30分钟"
-        - "30分钟 - 1小时"
-        - "1-2小时"
-        - "2-3小时"
-        - "> 3小时"
+      label: 📋 打卡信息
+      description: 打卡日期、姓名、课程、时长等信息
+      placeholder: |
+        - 打卡日期：YYYY-MM-DD
+        - 姓名：
+        - 今日学习：
+        - 学习时长：
     validations:
       required: true
 
   - type: textarea
     id: content
     attributes:
-      label: 今日学习内容
+      label: 📝 今日学习内容
       description: 简要描述今天学了什么
       placeholder: |
-        例如：
-        - 学习了注意力机制的概念
-        - 完成了课后练习 1-3 题
-        - 观看了 Transformer 可视化教程
-      value: |
-        - 
-        - 
-        -
+        - 学习了...
+        - 完成了...
     validations:
       required: true
 
   - type: textarea
-    id: summary
+    id: thoughts
     attributes:
-      label: 今日收获
-      description: 今天有什么收获或心得？
-      placeholder: "我学到了..."
+      label: 💭 学习心得（可选）
+      description: 今天的收获或疑问
+      placeholder: 今天学到了...
     validations:
       required: false
-
-  - type: textarea
-    id: questions
-    attributes:
-      label: 遇到的问题
-      description: 有什么不理解的地方？
-      placeholder: "我还有疑问..."
-    validations:
-      required: false
-
-  - type: dropdown
-    id: tomorrow
-    attributes:
-      label: 明日计划
-      description: 明天打算学什么？
-      options:
-        - 继续当前课程
-        - 学习下一课
-        - 复习巩固
-        - 做练习题
-        - 其他
-    validations:
-      required: true
-
-  - type: checkboxes
-    id: checklist
-    attributes:
-      label: 今日打卡清单
-      options:
-        - label: 📖 观看课程视频/阅读讲义
-        - label: 📝 完成课后练习
-        - label: 💭 记录学习笔记
-        - label: ❓ 提出问题或疑问
-        - label: 🔄 复习之前内容

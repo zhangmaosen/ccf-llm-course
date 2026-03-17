@@ -28,20 +28,20 @@
 
 ## 📚 课程模块
 
-| 序号 | 模块 | 课时 | 难度 |
-|:----:|------|:----:|:----:|
-| 1 | [人工智能基础概念](lessons/01-ai-basics.md) | 2 | ⭐ |
-| 2 | [大模型基础概念](lessons/02-llm-basics.md) | 2 | ⭐⭐ |
-| 3 | [模型架构](lessons/03-architecture.md) | 2 | ⭐⭐ |
-| 4 | [预训练技术](lessons/04-pretraining.md) | 2 | ⭐⭐ |
-| 5 | [指令微调](lessons/05-instruction-tuning.md) | 1 | ⭐ |
-| 6 | [人类对齐](lessons/06-alignment.md) | 1 | ⭐ |
-| 7 | [解码与部署](lessons/07-decoding.md) | 1 | ⭐ |
-| 8 | [提示学习](lessons/08-prompting.md) | 2 | ⭐⭐ |
-| 9 | [复杂推理](lessons/09-reasoning.md) | 1 | ⭐⭐ |
-| 10 | [智能体](lessons/10-agent.md) | 2 | ⭐⭐ |
-| 11 | [模型评测](lessons/11-evaluation.md) | 1 | ⭐ |
-| 12 | [模型伦理与安全](lessons/12-ethics.md) | 1 | ⭐ |
+| 序号 | 模块 | 课时 | 难度 | 核心内容 |
+|:----:|------|:----:|:----:|---------|
+| 1 | [人工智能基础概念](lessons/01-ai-basics.md) | 2 | ⭐ | AI定义、机器学习流程、评测指标 |
+| 2 | [大模型基础概念](lessons/02-llm-basics.md) | 2 | ⭐ | LLM定义、发展历程、涌现能力 |
+| 3 | [模型架构](lessons/03-architecture.md) | 2 | ⭐⭐ | 注意力机制、Transformer、主流架构 |
+| 4 | [预训练技术](lessons/04-pretraining.md) | 2 | ⭐⭐ | 自监督学习、预训练任务、训练要素 |
+| 5 | [指令微调](lessons/05-instruction-tuning.md) | 1 | ⭐ | 指令数据、微调概念 |
+| 6 | [人类对齐](lessons/06-alignment.md) | 1 | ⭐ | 对齐标准、幻象问题 |
+| 7 | [解码与部署](lessons/07-decoding.md) | 1 | ⭐ | 解码方法、部署方式 |
+| 8 | [提示学习](lessons/08-prompting.md) | 2 | ⭐ | 提示工程、思维链、API使用 |
+| 9 | [复杂推理](lessons/09-reasoning.md) | 1 | ⭐⭐ | 推理类型、思维链、推理模型 |
+| 10 | [智能体](lessons/10-agent.md) | 2 | ⭐⭐ | Agent架构、多智能体协作 |
+| 11 | [模型评测](lessons/11-evaluation.md) | 1 | ⭐ | 评测指标、评测数据集 |
+| 12 | [模型伦理与安全](lessons/12-ethics.md) | 1 | ⭐ | 偏见问题、隐私保护、安全意识 |
 
 **总课时：18课时**
 

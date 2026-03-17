@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试题：人工智能基础概念 - LMCC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        .info { color: #666; margin-bottom: 30px; font-size: 14px; }
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .question-num {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .question-text { font-size: 16px; font-weight: 500; margin-bottom: 15px; color: #333; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option {
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 15px;
+        }
+        .option:hover { border-color: #667eea; background: #f0f4ff; }
+        .option.selected { border-color: #667eea; background: #e8edff; }
+        .option.correct { border-color: #28a745; background: #d4edda; }
+        .option.wrong { border-color: #dc3545; background: #f8d7da; }
+        .option.disabled { cursor: not-allowed; opacity: 0.7; }
+        .explanation {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #fff3cd;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .explanation.show { display: block; }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .result {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+            margin-top: 30px;
+        }
+        .result.show { display: block; }
+        .result h2 { font-size: 24px; margin-bottom: 10px; }
+        .result .score { font-size: 48px; font-weight: bold; margin: 20px 0; }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .declaration {
+            margin-top: 30px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #856404;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 测试题：人工智能基础概念</h1>
+        <p class="info">第1课 | 选择题 4题 | 每题25分</p>
+
+        <div class="question" data-answer="A" data-explain="AI = Artificial Intelligence（人工智能）">
+            <span class="question-num">第 1 题</span>
+            <p class="question-text">人工智能的英文缩写是？</p>
+            <div class="options">
+                <div class="option" data-value="A">A. AI</div>
+                <div class="option" data-value="B">B. ML</div>
+                <div class="option" data-value="C">C. DL</div>
+                <div class="option" data-value="D">D. NLP</div>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="B" data-explain="机器学习需要经过数据预处理、模型训练和验证测试三个主要步骤。">
+            <span class="question-num">第 2 题</span>
+            <p class="question-text">以下哪个是机器学习的基本流程？</p>
+            <div class="options">
+                <div class="option" data-value="A">A. 收集数据 → 直接使用</div>
+                <div class="option" data-value="B">B. 数据预处理 → 模型训练 → 验证测试</div>
+                <div class="option" data-value="C">C. 编写代码 → 运行程序</div>
+                <div class="option" data-value="D">D. 购买设备 → 安装软件</div>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="B" data-explain="精确率 = TP / (TP + FP)，表示预测为正类的样本中有多少是真正为正的。">
+            <span class="question-num">第 3 题</span>
+            <p class="question-text">精确率(Precision)是指？</p>
+            <div class="options">
+                <div class="option" data-value="A">A. 预测正确的比例</div>
+                <div class="option" data-value="B">B. 预测为正的有多少是对的</div>
+                <div class="option" data-value="C">C. 实际为正的有多少被找出来</div>
+                <div class="option" data-value="D">D. 以上都不是</div>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="C" data-explain="机器翻译是典型的自然语言处理应用。人脸识别、医学影像诊断属于计算机视觉，自动驾驶涉及多个领域。">
+            <span class="question-num">第 4 题</span>
+            <p class="question-text">以下哪个属于自然语言处理的应用？</p>
+            <div class="options">
+                <div class="option" data-value="A">A. 人脸识别</div>
+                <div class="option" data-value="B">B. 自动驾驶</div>
+                <div class="option" data-value="C">C. 机器翻译</div>
+                <div class="option" data-value="D">D. 医学影像诊断</div>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <button class="submit-btn" onclick="submitQuiz()">提交答案</button>
+
+        <div class="result">
+            <h2>🎉 测试完成</h2>
+            <div class="score" id="score">0</div>
+            <p id="feedback"></p>
+        </div>
+
+        <div class="nav">
+            <a href="https://zhangmaosen.github.io/ccf-llm-course/lessons/01-ai-basics">← 返回课程</a>
+            <a href="https://zhangmaosen.github.io/ccf-llm-course/exercises/test-02.html">下一课测试 →</a>
+        </div>
+
+        <div class="declaration">
+            ⚠️ 声明：本项目为个人学习分享，无商业行为，纯属个人爱好。
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (this.classList.contains('disabled')) return;
+                const question = this.closest('.question');
+                question.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        function submitQuiz() {
+            const questions = document.querySelectorAll('.question');
+            let correct = 0;
+
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const explain = q.dataset.explain;
+                const selected = q.querySelector('.option.selected');
+                const explanation = q.querySelector('.explanation');
+
+                q.querySelectorAll('.option').forEach(o => o.classList.add('disabled'));
+
+                if (selected) {
+                    if (selected.dataset.value === answer) {
+                        selected.classList.add('correct');
+                        correct++;
+                        explanation.innerHTML = '✅ <strong>正确！</strong>' + explain;
+                    } else {
+                        selected.classList.add('wrong');
+                        q.querySelector(`[data-value="${answer}"]`).classList.add('correct');
+                        explanation.innerHTML = '❌ <strong>错误。</strong> 正确答案是 ' + answer + '。' + explain;
+                    }
+                } else {
+                    q.querySelector(`[data-value="${answer}"]`).classList.add('correct');
+                    explanation.innerHTML = '⚠️ 未选择。正确答案是 ' + answer + '。' + explain;
+                }
+
+                explanation.classList.add('show');
+            });
+
+            const score = correct * 25;
+            document.getElementById('score').textContent = score + '分';
+
+            let feedback = '';
+            if (score >= 80) feedback = '太棒了！掌握得很好！';
+            else if (score >= 60) feedback = '不错！继续加油！';
+            else feedback = '建议重新学习本课内容。';
+            document.getElementById('feedback').textContent = feedback;
+
+            document.querySelector('.result').classList.add('show');
+            document.querySelector('.submit-btn').disabled = true;
+        }
+    </script>
+</body>
+</html>

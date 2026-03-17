@@ -406,7 +406,7 @@ AI 可能被恶意使用的方式：
 | 操作 | 链接 |
 |------|------|
 | 📅 打卡记录 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
-| 📝 课后练习 | [测试题](../exercises/test-12.md) |
+| 📝 课后练习 | [测试题](../exercises/test-12.html) |
 | 🏆 查看排行 | [排行榜](../docs/leaderboard.md) |
 
 ---

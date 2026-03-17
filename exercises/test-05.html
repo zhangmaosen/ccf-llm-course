@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>测试题：指令微调 - LMCC</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; min-height: 100vh; padding: 20px; } .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); } h1 { color: #333; margin-bottom: 10px; } .info { color: #666; margin-bottom: 30px; font-size: 14px; } .question { margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 12px; } .question-num { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; } .question-text { font-size: 16px; font-weight: 500; margin-bottom: 15px; color: #333; } .options { display: flex; flex-direction: column; gap: 10px; } .option { padding: 12px 16px; border: 2px solid #e0e0e0; border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 15px; } .option:hover { border-color: #667eea; background: #f0f4ff; } .option.selected { border-color: #667eea; background: #e8edff; } .option.correct { border-color: #28a745; background: #d4edda; } .option.wrong { border-color: #dc3545; background: #f8d7da; } .option.disabled { cursor: not-allowed; opacity: 0.7; } .explanation { display: none; margin-top: 15px; padding: 12px; background: #fff3cd; border-radius: 8px; font-size: 14px; } .explanation.show { display: block; } .submit-btn { display: block; width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 30px; } .result { display: none; text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white; margin-top: 30px; } .result.show { display: block; } .result .score { font-size: 48px; font-weight: bold; margin: 20px 0; } .nav { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; } .nav a { color: #667eea; text-decoration: none; font-size: 14px; } .declaration { margin-top: 30px; padding: 15px; background: #fff3cd; border-radius: 8px; font-size: 12px; color: #856404; text-align: center; }</style>
+</head><body><div class="container"><h1>📝 测试题：指令微调</h1><p class="info">第5课 | 选择题 4题 | 每题25分</p>
+
+<div class="question" data-answer="B" data-explain="指令微调是指用指令-回复格式的数据训练模型，让模型学会理解和执行指令。">
+<span class="question-num">第 1 题</span><p class="question-text">指令微调的主要目的是？</p>
+<div class="options"><div class="option" data-value="A">A. 让模型学习更多语言</div><div class="option" data-value="B">B. 让模型学会理解和执行指令</div><div class="option" data-value="C">C. 减少模型参数</div><div class="option" data-value="D">D. 提高模型推理速度</div></div><div class="explanation"></div></div>
+
+<div class="question" data-answer="A" data-explain="指令数据通常包含指令、输入和期望的输出。">
+<span class="question-num">第 2 题</span><p class="question-text">指令数据通常包含？</p>
+<div class="options"><div class="option" data-value="A">A. 指令、输入、输出</div><div class="option" data-value="B">B. 只有指令</div><div class="option" data-value="C">C. 只有输出</div><div class="option" data-value="D">D. 图像和文本</div></div><div class="explanation"></div></div>
+
+<div class="question" data-answer="C" data-explain="指令微调能让模型更好地理解用户意图，生成符合预期的回答。">
+<span class="question-num">第 3 题</span><p class="question-text">经过指令微调的模型能？</p>
+<div class="options"><div class="option" data-value="A">A. 完全理解所有问题</div><div class="option" data-value="B">B. 不需要任何提示</div><div class="option" data-value="C">C. 更好地理解用户意图</div><div class="option" data-value="D">D. 自动生成指令</div></div><div class="explanation"></div></div>
+
+<div class="question" data-answer="B" data-explain="常见的指令数据来源包括人工标注、模型生成和数据集转换。">
+<span class="question-num">第 4 题</span><p class="question-text">指令数据的来源通常有？</p>
+<div class="options"><div class="option" data-value="A">A. 只有人工标注</div><div class="option" data-value="B">B. 人工标注和模型生成</div><div class="option" data-value="C">C. 只有模型生成</div><div class="option" data-value="D">D. 自动从网络抓取</div></div><div class="explanation"></div></div>
+
+<button class="submit-btn" onclick="submitQuiz()">提交答案</button>
+<div class="result"><h2>🎉 测试完成</h2><div class="score" id="score">0</div><p id="feedback"></p></div>
+<div class="nav"><a href="test-04.html">← 上一课测试</a><a href="test-06.html">下一课测试 →</a></div>
+<div class="declaration">⚠️ 声明：本项目为个人学习分享，无商业行为，纯属个人爱好。</div></div>
+
+<script>
+document.querySelectorAll('.option').forEach(o => { o.addEventListener('click', function() { if(this.classList.contains('disabled')) return; this.closest('.question').querySelectorAll('.option').forEach(x => x.classList.remove('selected')); this.classList.add('selected'); }); });
+function submitQuiz() { let c = 0; document.querySelectorAll('.question').forEach(q => { const a = q.dataset.answer, e = q.dataset.explain, s = q.querySelector('.option.selected'), ex = q.querySelector('.explanation'); q.querySelectorAll('.option').forEach(o => o.classList.add('disabled')); if(s) { if(s.dataset.value === a) { s.classList.add('correct'); c++; ex.innerHTML = '✅ <strong>正确！</strong>' + e; } else { s.classList.add('wrong'); q.querySelector(`[data-value="${a}"]`).classList.add('correct'); ex.innerHTML = '❌ <strong>错误。</strong> 正确答案是 ' + a + '。' + e; } } else { q.querySelector(`[data-value="${a}"]`).classList.add('correct'); ex.innerHTML = '⚠️ 未选择。正确答案是 ' + a + '。' + e; } ex.classList.add('show'); }); const sc = c * 25; document.getElementById('score').textContent = sc + '分'; document.getElementById('feedback').textContent = sc >= 80 ? '太棒了！掌握得很好！' : sc >= 60 ? '不错！继续加油！' : '建议重新学习本课内容。'; document.querySelector('.result').classList.add('show'); document.querySelector('.submit-btn').disabled = true; }
+</script></body></html>

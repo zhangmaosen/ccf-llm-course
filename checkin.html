@@ -56,32 +56,23 @@
             transition: border-color 0.3s;
         }
         input:focus, select:focus, textarea:focus { outline: none; border-color: #667eea; }
-        textarea { resize: vertical; min-height: 80px; }
+        textarea { resize: vertical; min-height: 60px; }
         .btn {
             display: block;
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
-            margin-bottom: 10px;
         }
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .btn-secondary {
-            background: #6c757d;
         }
         .hint {
             padding: 10px;
@@ -91,31 +82,6 @@
             color: #666;
             line-height: 1.5;
         }
-        .success-msg {
-            display: none;
-            padding: 15px;
-            background: #d4edda;
-            border-radius: 8px;
-            color: #155724;
-            margin-top: 15px;
-        }
-        .error-msg {
-            display: none;
-            padding: 15px;
-            background: #f8d7da;
-            border-radius: 8px;
-            color: #721c24;
-            margin-top: 15px;
-        }
-        .token-section {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #fff3cd;
-            border-radius: 8px;
-            font-size: 12px;
-        }
-        .token-section input { font-size: 12px; padding: 8px 10px; }
-        .token-help { color: #856404; margin-bottom: 8px; }
         @media (max-width: 600px) {
             .content { flex-direction: column; }
         }
@@ -137,15 +103,8 @@
                     <div class="date-value" id="today"></div>
                 </div>
                 
-                <div class="token-section">
-                    <div class="token-help">🔑 输入 GitHub Token 可直接提交（<a href="https://github.com/settings/tokens/new?scopes=repo&description=CCF课程打卡" target="_blank">获取Token</a>）</div>
-                    <input type="password" id="token" placeholder="ghp_xxxx（可选）">
-                </div>
-                
                 <div class="hint">
-                    💡 <strong>提交方式说明：</strong><br>
-                    • <strong>直接提交</strong>：输入 Token 后一键提交（最便捷）<br>
-                    • <strong>跳转提交</strong>：所有内容已填好，只需点击绿色"Submit new issue"按钮
+                    💡 填写信息后点击按钮，跳转到 GitHub 完成提交。所有内容已自动填充，只需点击绿色 Submit 按钮即可。
                 </div>
             </div>
             
@@ -180,7 +139,7 @@
                     <select id="duration">
                         <option value="&lt; 30分钟">&lt; 30分钟</option>
                         <option value="30分钟 - 1小时">30分钟 - 1小时</option>
-                        <option value="1-2小时">1-2小时</option>
+                        <option value="1-2小时" selected>1-2小时</option>
                         <option value="2-3小时">2-3小时</option>
                         <option value="&gt; 3小时">&gt; 3小时</option>
                     </select>
@@ -191,15 +150,7 @@
                     <textarea id="content" placeholder="简要描述今天学了什么..."></textarea>
                 </div>
                 
-                <button class="btn" onclick="submitDirect()">📝 直接提交</button>
-                <button class="btn btn-secondary" onclick="submitManual()">🔗 跳转提交</button>
-                
-                <div class="success-msg" id="successMsg">
-                    ✅ 打卡成功！<br>
-                    <a href="#" id="issueLink" target="_blank">查看打卡记录 →</a>
-                </div>
-                
-                <div class="error-msg" id="errorMsg"></div>
+                <button class="btn" onclick="submit()">📝 提交打卡</button>
             </div>
         </div>
     </div>
@@ -212,7 +163,7 @@
             const name = document.getElementById('name').value || '匿名';
             const lesson = document.getElementById('lesson').value || '未选择';
             const duration = document.getElementById('duration').value;
-            const content = document.getElementById('content').value || '无';
+            const content = document.getElementById('content').value || '';
             
             const info = `- 打卡日期：${today}
 - 姓名：${name}
@@ -228,73 +179,17 @@ ${info}
 ${content || '（未填写）'}`;
         }
         
-        async function submitDirect() {
-            const token = document.getElementById('token').value;
+        function submit() {
             const name = document.getElementById('name').value;
-            
             if (!name) {
-                showError('请填写姓名！');
+                alert('请填写姓名！');
                 return;
             }
             
-            if (!token) {
-                showError('请输入 GitHub Token，或使用"跳转提交"方式');
-                return;
-            }
-            
-            const btn = document.querySelector('.btn');
-            btn.disabled = true;
-            btn.textContent = '提交中...';
-            
-            try {
-                const response = await fetch('https://api.github.com/repos/zhangmaosen/ccf-llm-course/issues', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify({
-                        title: `[打卡] ${today} - ${name}`,
-                        body: getBody(),
-                        labels: ['checkin']
-                    })
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    showSuccess(data.html_url);
-                } else {
-                    const err = await response.json();
-                    showError('提交失败：' + (err.message || '请检查 Token 权限'));
-                }
-            } catch (e) {
-                showError('网络错误：' + e.message);
-            }
-            
-            btn.disabled = false;
-            btn.textContent = '📝 直接提交';
-        }
-        
-        function submitManual() {
-            const name = document.getElementById('name').value || '姓名';
             const title = encodeURIComponent(`[打卡] ${today} - ${name}`);
             const body = encodeURIComponent(getBody());
-            // 预填充日期字段
-            const url = `https://github.com/zhangmaosen/ccf-llm-course/issues/new?labels=checkin&template=checkin.yml&title=${title}&body=${body}&date=${today}&name=${encodeURIComponent(document.getElementById('name').value || '')}`;
+            const url = `https://github.com/zhangmaosen/ccf-llm-course/issues/new?labels=checkin&template=checkin.yml&title=${title}&info=${encodeURIComponent(getBody())}`;
             window.open(url, '_blank');
-        }
-        
-        function showSuccess(url) {
-            document.getElementById('successMsg').style.display = 'block';
-            document.getElementById('errorMsg').style.display = 'none';
-            document.getElementById('issueLink').href = url;
-        }
-        
-        function showError(msg) {
-            document.getElementById('errorMsg').textContent = '❌ ' + msg;
-            document.getElementById('errorMsg').style.display = 'block';
-            document.getElementById('successMsg').style.display = 'none';
         }
     </script>
 </body>

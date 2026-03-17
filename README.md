@@ -19,7 +19,7 @@
 
 点击下方按钮，**自动填充今天的日期**：
 
-👉 **[📅 智能打卡入口](https://zhangmaosen.github.io/ccf-llm-course/checkin.html)**
+👉 **[📅 智能打卡入口](./checkin.html)**
 
 > 💡 打开后只需输入姓名，日期自动填充！
 

@@ -34,41 +34,36 @@ jobs:
         run: |
           mkdir -p stats docs
           
-          # 更新统计 JSON
-          cat > stats/checkin.json << EOF
-          {"total": ${{ steps.calc.outputs.total }}, "today": ${{ steps.calc.outputs.today }}, "users": ${{ steps.calc.outputs.users }}, "updated": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"}
-          EOF
-          
-          # 更新徽章 JSON
-          cat > stats/badge.json << EOF
-          {"schemaVersion": 1, "label": "打卡总数", "message": "${{ steps.calc.outputs.total }}", "color": "blue"}
-          EOF
-          
-          # 生成排行榜
+          TOTAL=${{ steps.calc.outputs.total }}
+          TODAY=${{ steps.calc.outputs.today }}
+          USERS=${{ steps.calc.outputs.users }}
           DATE=$(date '+%Y-%m-%d')
           MONTH=$(date '+%Y年%m月')
-          TOTAL=${{ steps.calc.outputs.total }}
-          USERS=${{ steps.calc.outputs.users }}
-          TODAY=${{ steps.calc.outputs.today }}
           
-          # 获取打卡列表（从作者获取姓名）
-          RANK_DATA=$(gh issue list --label checkin --state open --json title,createdAt,author --limit 10 2>/dev/null | \
-            jq -r 'to_entries | map("| \(1+.key) | \(.value.author.login) | 1 | \(.value.createdAt[:10]) | 🌱 |") | join("\n")' 2>/dev/null || echo "| 1 | 暂无数据 | - | - | - |"))
+          # 更新统计 JSON
+          echo "{\"total\": $TOTAL, \"today\": $TODAY, \"users\": $USERS, \"updated\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > stats/checkin.json
           
-          cat > docs/leaderboard.md << EOF
+          # 更新徽章 JSON
+          echo "{\"schemaVersion\": 1, \"label\": \"打卡总数\", \"message\": \"$TOTAL\", \"color\": \"blue\"}" > stats/badge.json
+          
+          # 获取打卡列表
+          RANK_DATA=$(gh issue list --label checkin --state open --json author,createdAt --limit 10 --jq '.[] | "| 1 | \(.author.login) | 1 | \(.createdAt[:10]) | 🌱 |"' 2>/dev/null || echo "| 1 | 暂无数据 | - | - | - |")
+          
+          # 生成排行榜
+          cat > docs/leaderboard.md << 'ENDOFFILE'
           # 🏆 打卡排行榜
           
-          > 更新时间：$DATE
+          > 更新时间：DATE_PLACEHOLDER
           
           ---
           
           ## 📅 本月排行
           
-          > $MONTH
+          > MONTH_PLACEHOLDER
           
           | 排名 | 姓名 | 打卡天数 | 最新打卡 | 徽章 |
           |:----:|------|:--------:|:--------:|:----:|
-          $RANK_DATA
+          RANK_DATA_PLACEHOLDER
           
           ---
           
@@ -76,9 +71,9 @@ jobs:
           
           | 指标 | 数值 |
           |:----:|:----:|
-          | 总打卡次数 | $TOTAL |
-          | 参与人数 | $USERS |
-          | 今日打卡 | $TODAY |
+          | 总打卡次数 | TOTAL_PLACEHOLDER |
+          | 参与人数 | USERS_PLACEHOLDER |
+          | 今日打卡 | TODAY_PLACEHOLDER |
           
           ---
           
@@ -94,7 +89,15 @@ jobs:
           ---
           
           [立即打卡](../issues/new?template=checkin.yml) 开始你的学习之旅！
-          EOF
+          ENDOFFILE
+          
+          # 替换占位符
+          sed -i "s/DATE_PLACEHOLDER/$DATE/g" docs/leaderboard.md
+          sed -i "s/MONTH_PLACEHOLDER/$MONTH/g" docs/leaderboard.md
+          sed -i "s/TOTAL_PLACEHOLDER/$TOTAL/g" docs/leaderboard.md
+          sed -i "s/USERS_PLACEHOLDER/$USERS/g" docs/leaderboard.md
+          sed -i "s/TODAY_PLACEHOLDER/$TODAY/g" docs/leaderboard.md
+          sed -i "s|RANK_DATA_PLACEHOLDER|$RANK_DATA|g" docs/leaderboard.md
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

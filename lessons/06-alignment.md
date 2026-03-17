@@ -368,3 +368,14 @@ AI：这款手机售价 2999 元。
 ---
 
 **[⬆️ 返回目录](../README.md) | [← 上一课](05-instruction-tuning.md) | [下一课：解码与部署 →](07-decoding.md)**
+
+---
+
+## 📅 完成学习
+
+学完本课，记得：
+
+| 操作 | 链接 |
+|------|------|
+| 📅 打卡记录 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
+| 📝 课后练习 | [测试题](../exercises/test-06.md) |

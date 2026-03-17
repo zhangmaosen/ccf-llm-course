@@ -395,7 +395,23 @@ AI 可能被恶意使用的方式：
 
 ---
 
-## 🎓 恭喜完成全部课程！
+**[⬆️ 返回目录](../README.md) | [← 上一课](11-evaluation.md)**
+
+---
+
+## 📅 完成学习
+
+恭喜完成全部课程！记得：
+
+| 操作 | 链接 |
+|------|------|
+| 📅 打卡记录 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
+| 📝 课后练习 | [测试题](../exercises/test-12.md) |
+| 🏆 查看排行 | [排行榜](../docs/leaderboard.md) |
+
+---
+
+## 🎓 课程完成总结
 
 你已经学习了 CCF 大模型能力认证的全部 12 个模块：
 
@@ -416,4 +432,4 @@ AI 可能被恶意使用的方式：
 
 ---
 
-**[⬆️ 返回目录](../README.md) | [← 上一课](11-evaluation.md)**
+**继续学习，探索 AI 的无限可能！🚀**

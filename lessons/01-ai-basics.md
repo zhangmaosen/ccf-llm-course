@@ -417,3 +417,14 @@
 ---
 
 **[⬆️ 返回目录](../README.md) | [下一课：大模型基础概念 →](02-llm-basics.md)**
+
+---
+
+## 📅 完成学习
+
+学完本课，记得：
+
+| 操作 | 链接 |
+|------|------|
+| 📅 打卡记录 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
+| 📝 课后练习 | [测试题](../exercises/test-01.md) |

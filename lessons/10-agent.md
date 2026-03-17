@@ -419,3 +419,14 @@ WebGPT：搜索 → 阅读 → 整合 → 回答 + 引用
 ---
 
 **[⬆️ 返回目录](../README.md) | [← 上一课](09-reasoning.md) | [下一课：模型评测 →](11-evaluation.md)**
+
+---
+
+## 📅 完成学习
+
+学完本课，记得：
+
+| 操作 | 链接 |
+|------|------|
+| 📅 打卡记录 | [立即打卡](https://github.com/zhangmaosen/ccf-llm-course/issues/new?template=checkin.yml) |
+| 📝 课后练习 | [测试题](../exercises/test-10.md) |
